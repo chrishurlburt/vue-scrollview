@@ -28,11 +28,9 @@ Vue.use(VueScrollview)
 ```html
 <!-- Include after Vue -->
 <!-- Local files -->
-<link rel="stylesheet" href="vue-scrollview/dist/vue-scrollview.css"></link>
 <script src="vue-scrollview/dist/vue-scrollview.js"></script>
 
 <!-- From CDN -->
-<link rel="stylesheet" href="https://unpkg.com/vue-scrollview/dist/vue-scrollview.css"></link>
 <script src="https://unpkg.com/vue-scrollview"></script>
 ```
 
