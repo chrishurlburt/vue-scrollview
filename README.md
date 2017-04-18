@@ -89,6 +89,36 @@ Note, the value of the scope prop is set to the temporary variable name of 'inVi
   </div>
 ```
 
+```js
+
+const Child = {
+  template: '<div>some child component</div>',
+  watch: {
+    visible(val) {
+      if (val) {
+        console.log('im visible in the viewport!')
+      } else {
+        console.log('im no longer visible...')
+      }
+    }
+  },
+  props: {
+    visible: {
+      type: Boolean,
+      default: () => false
+     }
+  }
+}
+
+ new Vue({
+  el: '#scrollview-example',
+  components: {
+    'some-component': Child
+  }
+ })
+
+```
+
 ## Development
 
 ### Build
