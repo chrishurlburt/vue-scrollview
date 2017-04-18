@@ -152,15 +152,14 @@ const Child = {
       </transition>
    	</div>
    `,
-
-	watch: {
-  	visible(val) {
-    	if (val && !this.transitionIn) this.transitionIn = true 
+   watch: {
+    visible(val) {
+      if (val && !this.transitionIn) this.transitionIn = true
     }
   },
-	data() {
-  	return {
-    	transitionIn: false
+  data() {
+    return {
+      transitionIn: false
     }
   },
   props: {
