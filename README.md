@@ -260,7 +260,7 @@ npm run build
 
 ## Acknowledgements
 
-Special thanks to github user @posva for the excellent [template](https://github.com/posva/vue-plugin-template) this plugin is based on.
+Special thanks to github user [@posva](https://github.com/posva) for the excellent [template](https://github.com/posva/vue-plugin-template) this plugin is based on.
 
 ## License
 
