@@ -17,8 +17,6 @@ npm install --save vue-scrollview
 ```js
 import Vue from 'vue'
 import VueScrollview from 'vue-scrollview'
-// You need a specific loader for CSS files like https://github.com/webpack/css-loader
-import 'vue-scrollview/dist/vue-scrollview.css'
 
 Vue.use(VueScrollview)
 ```
