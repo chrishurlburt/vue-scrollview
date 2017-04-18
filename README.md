@@ -62,7 +62,7 @@ the DOM, they may cause a reflow changing subsequent children distances from the
 
 As a result, it is up to the developer to ensure the ready prop is set at the correct time. This is implementation specific, so solutions will
 vary from use case to use case. Please note, if no content is expected to load at a later time and effect the components position on the page, the ready
-prop can be set immediately to ```js true ```.
+prop can be set immediately to ``` true ```.
 
 ```html
   <div id="scrollview-example">
