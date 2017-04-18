@@ -6,7 +6,7 @@
 
 ## Overview
 
-vue-scrollview is a Vue.js plugin which registers a ```html <Scroll-view></Scroll-view> ``` component globally. This component utilizes Vue's scoped slot
+vue-scrollview is a Vue.js plugin which registers a ``` <Scroll-view></Scroll-view> ``` component globally. This component utilizes Vue's scoped slot
 API to notify its child components when they are visible within the viewport via props.
 
 ## Installation
