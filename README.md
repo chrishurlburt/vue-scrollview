@@ -49,16 +49,16 @@ communication with it's child components. Read more about scoped slots in the Vu
 
 #### The 'ready' prop
 
-The ```html <Scroll-view></Scroll-view> ``` component requires a boolean 'ready' prop.
+The ``` <Scroll-view></Scroll-view> ``` component requires a boolean 'ready' prop.
 
 The purpose of the ready prop is to notify the ```html <Scroll-view></Scroll-view> ``` component that all document reflows
 are complete and it is safe to retrieve the initial position of the slotted components root elements (needed in order to determine if in viewport).
 This is necessary because vue-scrollview caches the initial position of its children relative to the top of the page for performance reasons. If these measurements
 were to occur too soon, they may be incorrect.
 
-For example, consider a situation where the ```html <Scroll-view></Scroll-view> ``` component children contain images. There's a chance these images
-will load after ```html <Scroll-view></Scroll-view> ``` has taken measurements to determine a child's distance from the top of the page. When the images enter
-the DOM, they may cause a reflow changing subsequent the children distances from the top of the page, therefore causing the previous measurements to be incorrect.
+For example, consider a situation where the ``` <Scroll-view></Scroll-view> ``` component children contain images. There's a chance these images
+will load after ``` <Scroll-view></Scroll-view> ``` has taken measurements to determine a child's distance from the top of the page. When the images enter
+the DOM, they may cause a reflow changing subsequent children distances from the top of the page, therefore causing the previous measurements to be incorrect. This will likely lead to unexpected behavior.
 
 As a result, it is up to the developer to ensure the ready prop is set at the correct time. This is implementation specific, so solutions will
 vary from use case to use case. Please note, if no content is expected to load at a later time and effect the components position on the page, the ready
