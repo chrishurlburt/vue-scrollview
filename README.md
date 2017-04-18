@@ -128,6 +128,12 @@ const Child = {
 ### Ex. 2 - Detecting in viewport with Vue.js transitions
 coming soon...
 
+### Ex. 3 - Detecting in viewport with explicit offset
+Coming soon...
+
+### Ex. 4 - List rendering in ``` <Scroll-view></Scroll-view> ```
+coming soon...
+
 ## Additional Props
 
 ``` <Scroll-view></Scroll-view> ``` accepts some additional props to fine-tune configuration.
