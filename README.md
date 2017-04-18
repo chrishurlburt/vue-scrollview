@@ -42,6 +42,8 @@ Vue.use(ScrollView)
 
 ### Required Markup
 
+***IMPORTANT***: For performance reasons, please ensure only one ``` <Scroll-view></Scroll-view> ``` component is mounted at any given time in your app. Since ``` <Scroll-view></Scroll-view> ``` listens to ``` window.onscroll ```, multiple ``` <Scroll-view></Scroll-view> ``` instances will cause performance degredation and unexepected behavior.
+
 #### Scoped Slots
 
 The ``` <Scroll-view></Scroll-view> ``` component utilizes Vue.js scoped slots to facilitate
