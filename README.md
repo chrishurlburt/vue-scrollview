@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/vue-scrollview.svg)](https://www.npmjs.com/package/vue-scrollview) [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
 
-> A Vue.js for detecting when components are visible in the viewport via the Vue.js scoped slots api.
+> A Vue.js component for detecting when it's child components are visible within the viewport.
 
 ## Overview
 
