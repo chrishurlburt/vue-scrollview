@@ -258,6 +258,10 @@ Bundle the js to the `dist` folder:
 npm run build
 ```
 
+## Acknowledgements
+
+Special thanks to github user @posva for the excellent [template](https://github.com/posva/vue-plugin-template) this plugin is based on.
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
