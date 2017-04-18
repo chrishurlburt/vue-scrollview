@@ -148,6 +148,7 @@ const Child = {
   template: `
   	<div class="child">
       <transition name="slide-fade">
+         <!-- vue.js transitions can be triggered programmatically by changing a 'key' prop inside a transition component -->
         <div :style="{ visibility: transitionIn || 'hidden' }" :key="transitionIn">some child component</div>
       </transition>
    	</div>
@@ -178,7 +179,7 @@ const Child = {
  })
 ```
 
-[Live Demo](https://jsfiddle.net/4uL5gg5n/29/)
+[Live Demo](https://jsfiddle.net/4uL5gg5n/31/)
 
 ### Ex. 4 - List rendering in ``` <Scroll-view></Scroll-view> ```
 coming soon...
