@@ -40,9 +40,9 @@ Vue.use(ScrollView)
 
 ## Usage
 
-### Required Markup
-
 ***IMPORTANT***: For performance reasons, please ensure only one ``` <Scroll-view></Scroll-view> ``` component is mounted at any given time in your app. Since ``` <Scroll-view></Scroll-view> ``` listens to ``` window.onscroll ```, multiple ``` <Scroll-view></Scroll-view> ``` instances will cause performance degredation and unexepected behavior.
+
+### Required Markup
 
 #### Scoped Slots
 
@@ -125,11 +125,61 @@ const Child = {
 
 [Live Demo](https://jsfiddle.net/2aah4r88/3/)
 
-### Ex. 2 - Detecting in viewport with Vue.js transitions
-coming soon...
+### Ex. 2 - With Vue.js transitions
 
-### Ex. 3 - Detecting in viewport with explicit offset
-Coming soon...
+Notice the offset prop is set to ``` 50 ``` in this example to trigger the enter transitions just above the bottom
+of the viewport.
+
+```html
+  <div id="scrollview-example">
+    <p>Scroll down...</p>
+    <Scroll-view :ready="true" :offset="50">
+      <template scope="inView">
+        <Some-component :visible="inView[1]" :key="1"></Some-component>
+        <Some-component :visible="inView[2]" :key="2"></Some-component>
+        <Some-component :visible="inView[3]" :key="3"></Some-component>
+      </template>
+    </Scroll-view>
+  </div>
+```
+
+```js
+const Child = {
+  template: `
+  	<div class="child">
+      <transition name="slide-fade">
+        <div :style="{ visibility: transitionIn || 'hidden' }" :key="transitionIn">some child component</div>
+      </transition>
+   	</div>
+   `,
+
+	watch: {
+  	visible(val) {
+    	if (val && !this.transitionIn) this.transitionIn = true 
+    }
+  },
+	data() {
+  	return {
+    	transitionIn: false
+    }
+  },
+  props: {
+    visible: {
+      type: Boolean,
+      default: () => false
+     }
+  }
+}
+ 
+ new Vue({
+  el: '#scrollview-example',
+  components: {
+    'some-component': Child
+  }
+ })
+```
+
+[Live Demo](https://jsfiddle.net/4uL5gg5n/29/)
 
 ### Ex. 4 - List rendering in ``` <Scroll-view></Scroll-view> ```
 coming soon...
