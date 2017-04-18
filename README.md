@@ -128,7 +128,13 @@ coming soon...
 
 ## Additional Props
 
-``` <Scroll-view></Scroll-view> ``` accepts some additional props to fine-tune configuration. They are listed below.
+``` <Scroll-view></Scroll-view> ``` accepts some additional props to fine-tune configuration.
+
+- ``` offset ``` - Number - Use to adjust when a component is considered 'in viewport', defaults to 200. This will cause a component to be registered as visible when it is 200px from the bottom while scrolling down or 200px from the top while scrolling up.
+
+- ``` throttle ``` - Number - Use to control the how often in ms ``` <Scroll-view></Scroll-view> ``` checks component positions. May impact performance if set to a low value, defaults to 50.
+
+- ``` tag ``` - String - Use to control wrapper element of scrollview, defaults to 'span'.
 
 ## Development
 
