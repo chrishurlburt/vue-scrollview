@@ -119,6 +119,8 @@ const Child = {
 
 ```
 
+[Live Demo](https://jsfiddle.net/2aah4r88/3/)
+
 ## Development
 
 ### Build
