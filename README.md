@@ -68,7 +68,7 @@ prop can be set immediately to ``` true ```.
 
 #### The 'key' prop
 
-vue-scrollview requires the use of a unique key prop on the slotted components so that it can perform some tracking internally. Vue.js also requires the use of the key prop on components in certain situations -- for example, with components in a v-for. Read more in the [Vue.js Documentation](https://vuejs.org/v2/guide/list.html#key).
+vue-scrollview requires the use of a __unique__ key prop on the slotted components so that it can perform some tracking internally. Vue.js also requires the use of the key prop on components in certain situations -- for example, with components in a v-for. Read more in the [Vue.js Documentation](https://vuejs.org/v2/guide/list.html#key).
 
 ## Practical Use Cases
 
