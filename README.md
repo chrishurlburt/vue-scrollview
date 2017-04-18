@@ -44,14 +44,14 @@ Vue.use(ScrollView)
 
 #### Scoped Slots
 
-The ```html <Scroll-view></Scroll-view> ``` component utilizes Vue.js scoped slots to facilitate
-communication with it's child components. Read more about scoped slots in the Vue.js documentation.
+The ``` <Scroll-view></Scroll-view> ``` component utilizes Vue.js scoped slots to facilitate
+communication with it's child components. Read more about scoped slots in the [Vue.js documentation](https://vuejs.org/v2/guide/components.html#Scoped-Slots).
 
 #### The 'ready' prop
 
 The ``` <Scroll-view></Scroll-view> ``` component requires a boolean 'ready' prop.
 
-The purpose of the ready prop is to notify the ```html <Scroll-view></Scroll-view> ``` component that all document reflows
+The purpose of the ready prop is to notify the ``` <Scroll-view></Scroll-view> ``` component that all document reflows
 are complete and it is safe to retrieve the initial position of the slotted components root elements (needed in order to determine if in viewport).
 This is necessary because vue-scrollview caches the initial position of its children relative to the top of the page for performance reasons. If these measurements
 were to occur too soon, they may be incorrect.
@@ -63,6 +63,18 @@ the DOM, they may cause a reflow changing subsequent children distances from the
 As a result, it is up to the developer to ensure the ready prop is set at the correct time. This is implementation specific, so solutions will
 vary from use case to use case. Please note, if no content is expected to load at a later time and effect the components position on the page, the ready
 prop can be set immediately to ``` true ```.
+
+#### The 'key' prop
+
+vue-scrollview requires the use of a unique key prop on the slotted components so that it can perform some tracking internally. Vue.js also requires the use of the key prop on components in certain situations -- for example, with components in a v-for. Read more in the [Vue.js Documentation](https://vuejs.org/v2/guide/list.html#key).
+
+## Practical Use Cases
+
+Refer to the example below. Each of the 4 components is designed to accept a 'visible' prop which is a boolean that indicates whether the component is visible within the viewport. For the purpose of this example, the name 'visible' is used however you can name this prop whatever you like.
+
+The visible prop recieves the the value of scope, which is an object containing properties that track each components visibility by the key provided by the key prop. inView.a holds a boolean that indicates the visibility of ``` <Some-component></Some-component> ``` with a key of 'a' within the viewport, inView.b indicates visibility for  ``` <Some-component></Some-component> ``` with key of 'b', etc.
+
+Note, the value of the scope prop is set to the temporary variable name of 'inView' but any name may be used here.
 
 ```html
   <div id="scrollview-example">
@@ -81,7 +93,7 @@ prop can be set immediately to ``` true ```.
 
 ### Build
 
-Bundle the js and css of to the `dist` folder:
+Bundle the js to the `dist` folder:
 
 ```bash
 npm run build
