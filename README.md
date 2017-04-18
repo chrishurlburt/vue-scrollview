@@ -179,10 +179,64 @@ const Child = {
  })
 ```
 
-[Live Demo](https://jsfiddle.net/4uL5gg5n/31/)
+[Live Demo](https://jsfiddle.net/4uL5gg5n/33/)
 
-### Ex. 4 - List rendering in ``` <Scroll-view></Scroll-view> ```
-coming soon...
+### Ex. 3 - List rendering in ``` <Scroll-view></Scroll-view> ```
+
+```html
+<div id="scrollview-example">
+  <ul>
+    <Scroll-view :ready="true" :offset="200">
+      <template scope="inView">
+        <List-item
+          v-for="item in items"
+          :text="item.text"
+          :key="item.id"
+          :visible="inView[item.id]"
+         >{{ item.text }}</List-item>
+      </template>
+    </Scroll-view>
+  </ul>
+</div>
+```
+
+```js
+const ListItem = {
+  template: `
+    <li
+      class="list-item"
+      :style="{ color: (visible) ? 'red' : 'blue' }"
+    >{{ text }}</li>
+  `,
+  props: {
+    visible: {
+      type: Boolean,
+      default: () => false
+    },
+    text: {
+      type: String,
+      required: true
+    },
+  }
+}
+
+new Vue({
+  el: '#scrollview-example',
+  components: {
+    ListItem,
+  },
+  data: {
+    items: [
+      { text: 'item one text', id: 1 },
+      { text: 'some other text', id: 2 },
+      { text: 'lorem ipsum sit dolor amet', id: 3 },
+      { text: 'Nam suscipit purus eget auctor rutrum.', id: 4 },
+      { text: 'Duis tortor purus, dictum sit amet maximus eu, egestas vitae nulla.', id: 5 }
+    ]
+  }
+})
+```
+[Live Demo](https://jsfiddle.net/r5Lu19hz/12/)
 
 ## Additional Props
 
