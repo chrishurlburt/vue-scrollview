@@ -76,6 +76,8 @@ The visible prop recieves the the value of scope, which is an object containing 
 
 Note, the value of the scope prop is set to the temporary variable name of 'inView' but any name may be used here.
 
+### Ex. 1 - Detecting in viewport
+
 ```html
   <div id="scrollview-example">
     <Scroll-view :ready="true">
@@ -120,6 +122,13 @@ const Child = {
 ```
 
 [Live Demo](https://jsfiddle.net/2aah4r88/3/)
+
+### Ex. 2 - Detecting in viewport with Vue.js transitions
+coming soon...
+
+## Additional Props
+
+``` <Scroll-view></Scroll-view> ``` accepts some additional props to fine-tune configuration. They are listed below.
 
 ## Development
 
