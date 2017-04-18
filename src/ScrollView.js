@@ -1,4 +1,5 @@
 import throttle from 'lodash.throttle'
+import { getElDistanceTop } from './helpers'
 
 export default {
   render (h) {
@@ -6,7 +7,7 @@ export default {
       this.tag,
       [
         this.$scopedSlots.default(this.tracked)
-      ],
+      ]
     )
   },
   data () {
@@ -96,15 +97,4 @@ export default {
       default: () => 'span'
     }
   }
-}
-
-function getElDistanceTop (el) {
-  let location = 0
-  if (el.offsetParent) {
-    do {
-      location += el.offsetTop
-      el = el.offsetParent
-    } while (el)
-  }
-  return location >= 0 ? location : 0
 }
