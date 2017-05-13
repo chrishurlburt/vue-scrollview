@@ -35,7 +35,7 @@ export default {
     },
     setComponentsTracking () {
       this.$scopedSlots.default(this.tracked).reduce((acc, vnode) => {
-        if (vnode.key) this.$set(acc, vnode.key, false)
+        if (vnode.key || vnode.key === 0) this.$set(acc, vnode.key, false)
         return acc
       }, this.tracked)
     },
