@@ -1,6 +1,6 @@
 {
   "name": "vue-scrollview",
-  "version": "0.0.5",
+  "version": "1.0.5",
   "description": "A Vue.js component for detecting when components are visible in the viewport via the Vue.js scoped slots api.",
   "author": "Chris Hurlburt <hurlburt.chris@gmail.com>",
   "main": "dist/vue-scrollview.common.js",
@@ -16,13 +16,13 @@
     "clean": "rimraf dist",
     "build": "node build/build.js",
     "lint": "eslint --ext js --ext jsx --ext vue src test/**/*.spec.js test/*.js build",
-    "lint:js:fix": "yon run lint:js -- --fix",
+    "lint:js:fix": "npm run lint:js -- --fix",
     "lint:staged": "lint-staged",
-    "pretest": "yon run lint",
+    "pretest": "npm run lint",
     "test": "cross-env BABEL_ENV=test karma start test/karma.conf.js --single-run",
     "dev": "webpack-dashboard -- webpack-dev-server --config build/webpack.config.dev.js --open",
     "dev:coverage": "cross-env BABEL_ENV=test karma start test/karma.conf.js",
-    "prepublish": "yon run build"
+    "prepublish": "npm run build"
   },
   "lint-staged": {
     "*.{vue,jsx,js}": [
