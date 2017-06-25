@@ -136,6 +136,7 @@
     "url": "http://www.opensource.org/licenses/mit-license.php"
   },
   "dependencies": {
+    "lodash.some": "^4.6.0",
     "lodash.throttle": "^4.1.1"
   }
 }
