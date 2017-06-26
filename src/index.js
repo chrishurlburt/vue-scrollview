@@ -1,6 +1,9 @@
 import ScrollView from './ScrollView'
+import Tracker from './tracker.js'
 
-function plugin (Vue) {
+function plugin (Vue, options = {}) {
+  const throttle = options.throttle || 50
+  new Tracker({ throttle })
   Vue.component('ScrollView', ScrollView)
 }
 

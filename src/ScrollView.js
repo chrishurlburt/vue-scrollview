@@ -1,4 +1,4 @@
-import { tracker } from './tracker'
+import Tracker from './tracker'
 
 export default {
   render (h) {
@@ -18,18 +18,21 @@ export default {
   watch: {
     ready (ready) {
       if (ready && !this.initialized) {
-        this.tracking = tracker.track(this)
+        this.tracking = this.tracker.track(this)
         this.initialized = true
       }
     }
   },
   updated () {
     // reset tracking for components, new ones were probably added
-    tracker.update(this)
+    this.tracker.update(this)
+  },
+  created () {
+    this.tracker = new Tracker()
   },
   mounted () {
     if (this.ready) {
-      this.tracking = tracker.track(this)
+      this.tracking = this.tracker.track(this)
       this.initialized = true
     }
     this.$on('tracking:update', update => this.tracking = update)
