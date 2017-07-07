@@ -3,7 +3,8 @@ import Tracker from './tracker.js'
 
 function plugin (Vue, options = {}) {
   const throttle = options.throttle || 50
-  new Tracker({ throttle })
+  const callbacks = options.callbacks || []
+  new Tracker({ throttle, callbacks })
   Vue.component('ScrollView', ScrollView)
 }
 

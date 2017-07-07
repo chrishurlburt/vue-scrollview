@@ -19,26 +19,18 @@ export default {
     ready (ready) {
       if (ready && !this.initialized) {
         this.tracking = this.tracker.track(this)
-        this.initialized = true
       }
     }
-  },
-  updated () {
-    // reset tracking for components, new ones were probably added
-    this.tracker.update(this)
   },
   created () {
     this.tracker = new Tracker()
   },
   mounted () {
-    if (this.ready) {
-      this.tracking = this.tracker.track(this)
-      this.initialized = true
-    }
+    if (this.ready) this.tracking = this.tracker.track(this)
     this.$on('tracking:update', update => this.tracking = update)
   },
   beforeDestroy () {
-    // document.removeEventListener('scroll', this.scrollListener)
+    this.tracker.untrack(this)
   },
   props: {
     ready: {
@@ -48,10 +40,6 @@ export default {
     offset: {
       type: Number,
       default: () => 200
-    },
-    throttle: {
-      type: Number,
-      default: () => 50
     },
     tag: {
       type: String,

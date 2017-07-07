@@ -5,41 +5,47 @@ let instance
 
 class Tracker {
 
-  constructor ({ throttle } = {}) {
+  constructor ({ throttle, callbacks } = {}) {
     if (!instance) {
+      this.scrollY = window.scrollY
+      this.callbacks = callbacks
+      this.scrollviews = {}
+      this.locations = []
+      this.tracking = {}
+
+      this.bindListeners(throttle)
       instance = this
     }
-
-    this.scrollY = window.scrollY
-    this.scrollviews = {}
-    this.locations = []
-    this.tracking = {}
-    this.bindListeners(throttle)
-
     return instance
   }
 
   bindListeners (throttleBy) {
     this._scrollListener = throttle(this.scrollListener.bind(this), throttleBy, { leading: true })
     document.addEventListener('scroll', this._scrollListener, false)
-    ;['DOMContentLoaded', 'load', 'resize']
+    ;['resize']
       .forEach(
         event => window.addEventListener(
           event,
-          throttle(this.resetScrollviews, throttleBy),
+          throttle(this.resetScrollviews.bind(this), throttleBy),
           false
         )
       )
   }
 
   resetScrollviews () {
-
+    // this.locations = this.locations.map(location => {
+    //   const component = this.scrollviews[location.scrollview].$children
+    //     .find(child => child.$vnode.key === location.component).$el
+    //   location.position = getElDistanceTop(component)
+    //   return location
+    // })
   }
 
   scrollListener () {
     window.requestAnimationFrame(() => {
       this.checkInViewport()
       this.broadcastScrollviews()
+      this.callbacks.forEach(cb => cb())
     })
   }
 
@@ -93,10 +99,10 @@ class Tracker {
     }, { locations: [], tracking: {}})
   }
 
-  track (scrollview, options) {
+  track (scrollview) {
     if (this.keysAreUnique(scrollview.$children)) {
       this.scrollviews[scrollview._uid] = scrollview
-      const { tracking, locations } = this.initializeScrollview(scrollview, options)
+      const { tracking, locations } = this.initializeScrollview(scrollview)
       this.locations = this.locations.concat(locations)
       this.tracking[scrollview._uid] = tracking
       this.checkInViewport()
@@ -106,9 +112,11 @@ class Tracker {
     }
   }
 
-  update () {
-
+  untrack ({ _uid }) {
+    delete this.tracking[_uid]
+    this.locations = this.locations.filter(location => location.scrollview !== _uid)
   }
+
 }
 
 export default Tracker
