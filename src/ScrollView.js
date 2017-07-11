@@ -1,4 +1,4 @@
-import Tracker from './tracker'
+import { $scrollview } from './index'
 
 export default {
   render (h) {
@@ -22,15 +22,12 @@ export default {
       }
     }
   },
-  created () {
-    this.tracker = new Tracker()
-  },
   mounted () {
-    if (this.ready) this.tracking = this.tracker.track(this)
+    if (this.ready) this.tracking = $scrollview._track(this)
     this.$on('tracking:update', update => this.tracking = update)
   },
   beforeDestroy () {
-    this.tracker.untrack(this)
+    $scrollview._untrack(this)
   },
   props: {
     ready: {

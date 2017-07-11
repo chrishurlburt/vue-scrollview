@@ -1,10 +1,20 @@
+import { initVueScrollview } from './core/init'
+import { _public, _private } from './core/api'
 import ScrollView from './ScrollView'
-import Tracker from './tracker.js'
+
+let $scrollview
 
 function plugin (Vue, options = {}) {
   const throttle = options.throttle || 50
   const callbacks = options.callbacks || []
-  new Tracker({ throttle, callbacks })
+  const state = initVueScrollview({ throttle, callbacks })
+
+  $scrollview = {
+    state,
+    ..._private(state),
+    ..._public(state)
+  }
+
   Vue.component('ScrollView', ScrollView)
 }
 
@@ -18,5 +28,6 @@ const version = '__VERSION__'
 // Export all components too
 export {
   ScrollView,
+  $scrollview,
   version
 }
