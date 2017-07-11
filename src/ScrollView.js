@@ -1,96 +1,30 @@
-import throttle from 'lodash.throttle'
-import { getElDistanceTop } from './helpers'
+import { $scrollview } from './index'
 
 export default {
   render (h) {
     return h(
       this.tag,
       [
-        this.$scopedSlots.default(this.tracked)
+        this.$scopedSlots.default(this.tracking)
       ]
     )
   },
   data () {
     return {
-      tracked: {},
-      locations: {},
-      scrollListener: undefined,
-      initialized: false,
-      scrollY: undefined
-    }
-  },
-  watch: {
-    ready (val) {
-      if (val && !this.initialized) this.initialSetup()
-    }
-  },
-  methods: {
-    initialSetup () {
-      this.setComponentsTracking()
-      this.setComponentsLocations()
-      this.scrollY = window.scrollY
-      this.initScrollListener()
-      this.listenForRecallibrate()
-      this.initialized = true
-    },
-    setComponentsTracking () {
-      this.$scopedSlots.default(this.tracked).reduce((acc, vnode) => {
-        if (vnode.key || vnode.key === 0) this.$set(acc, vnode.key, false)
-        return acc
-      }, this.tracked)
-    },
-    setComponentsLocations () {
-      this.$children.reduce((acc, child) => {
-        return this.$set(this.locations, child.$vnode.key, getElDistanceTop(child.$el))
-      }, this.locations)
-    },
-    initScrollListener () {
-      this.scrollListener = throttle(this.checkInViewport, this.throttle, { leading: true })
-      document.addEventListener('scroll', this.scrollListener, false)
-    },
-    checkInViewport () {
-      const down = this.scrollY < window.scrollY
-      Object.keys(this.locations).forEach((key) => {
-        const toTopOfViewport = this.locations[key] - window.scrollY
-        if (down) {
-          // scrolling down
-          if (toTopOfViewport <= window.innerHeight - this.offset && toTopOfViewport > 0) {
-            this.tracked[key] = true
-          } else {
-            this.tracked[key] = false
-          }
-        } else if (toTopOfViewport <= window.innerHeight && toTopOfViewport > this.offset) {
-            // scrolling up
-          this.tracked[key] = true
-        } else {
-          this.tracked[key] = false
-        }
-      })
-      this.scrollY = window.scrollY
-    },
-    listenForRecallibrate () {
-      ['DOMContentLoaded', 'load', 'resize']
-        .forEach(event => window.addEventListener(event, this.setComponentsLocations, false))
+      tracking: {}
     }
   },
   mounted () {
-    if (this.ready) this.initialSetup()
+    this.tracking = $scrollview._track(this)
+    this.$on('tracking:update', update => this.tracking = update)
   },
   beforeDestroy () {
-    document.removeEventListener('scroll', this.scrollListener)
+    $scrollview._untrack(this)
   },
   props: {
-    ready: {
-      type: Boolean,
-      required: true
-    },
     offset: {
       type: Number,
       default: () => 200
-    },
-    throttle: {
-      type: Number,
-      default: () => 50
     },
     tag: {
       type: String,
