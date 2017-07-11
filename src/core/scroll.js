@@ -1,5 +1,12 @@
 import { getElDistanceTop } from './helpers'
 
+/**
+ * Creates the scroll listener function.
+ *
+ * @param {Object} state - ScrollView tracking state.
+ * @param {Array} fns - Functions to call on scroll.
+ * @returns null
+ */
 export const createScrollListener = (state, ...fns) => {
   return () => {
     window.requestAnimationFrame(() => {
@@ -8,6 +15,12 @@ export const createScrollListener = (state, ...fns) => {
   }
 }
 
+/**
+ * Checks if a component is visible in the viewport.
+ *
+ * @param {Object} state - ScrollView tracking state.
+ * @returns null
+ */
 export const checkInViewport = (state) => {
   const down = state.scrollY <= window.scrollY
   state.locations.forEach(({ position, scrollview, component }) => {
@@ -30,11 +43,23 @@ export const checkInViewport = (state) => {
   state.scrollY = window.scrollY
 }
 
+/**
+ * Emits events on ScrollView $vms to update tracking for children.
+ *
+ * @param {Object} state - ScrollView tracking state.
+ * @returns null
+ */
 export const broadcastScrollviews = ({ scrollviews, tracking }) => {
   Object.keys(scrollviews)
     .forEach(scrollview => scrollviews[scrollview].$emit('tracking:update', tracking[scrollview]))
 }
 
+/**
+ * Resets cached component locations for ScrollView $vms
+ *
+ * @param {Object} state - ScrollView tracking state.
+ * @returns null
+ */
 export const resetScrollviews = (state) => {
   state.locations = state.locations.map((location) => {
     const component = state.scrollviews[location.scrollview].$children

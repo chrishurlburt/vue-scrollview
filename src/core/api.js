@@ -4,6 +4,12 @@ import { checkInViewport, resetScrollviews } from './scroll'
 
 export const _private = (state) => ({
 
+  /**
+   * Initiates tracking on a new scrollview component.
+   *
+   * @param {Object} ScrollView - A ScrollView $vm
+   * @returns {(Object|Error)} Tracking object for scrollview's child components or error if conflicting keys.
+   */
   _track: (scrollview) => {
     if (keysAreUnique(state, scrollview.$children)) {
       state.scrollviews[scrollview._uid] = scrollview
@@ -17,6 +23,12 @@ export const _private = (state) => ({
     }
   },
 
+  /**
+   * Removes a scrollview from tracking when it's destroyed.
+   *
+   * @param {Object} ScrollView - A ScrollView $vm
+   * @returns null
+   */
   _untrack: ({ _uid }) => {
     delete state.tracking[_uid]
     state.locations = state.locations.filter(location => location.scrollview !== _uid)
@@ -26,6 +38,13 @@ export const _private = (state) => ({
 
 export const _public = (state) => ({
 
+  /**
+   * Scrolls the page to a component.
+   *
+   * @param {(Number|String)} key - The key the component was set to track by.
+   * @param {Number} [offset] - Defaults to the offset set in the ScrollViews props.
+   * @returns null
+   */
   scrollToComponent: (key, offset) => {
     const { position, scrollview } = fetchComponentByKey(key, state.locations)
     const { offset: defaultOffset } = state.scrollviews[scrollview]
@@ -34,8 +53,19 @@ export const _public = (state) => ({
     state.scrollListener()
   },
 
+  /**
+   * Force refreshes the locations of components being tracked by scrollviews.
+   *
+   * @returns null
+   */
   forceRefresh: () => resetScrollviews(state),
 
+  /**
+   * Fetches a components distance from the top of the viewport.
+   *
+   * @param {(Number|String)} key - The key the component was set to track by.
+   * @returns {Number}
+   */
   getComponentLocation: (key) => {
     const { position } = fetchComponentByKey(key, state.locations)
     return position
