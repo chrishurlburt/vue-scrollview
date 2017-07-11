@@ -34,10 +34,7 @@ export const _public = (state) => ({
     state.scrollListener()
   },
 
-  forceRefresh: () => {
-    resetScrollviews(state)
-    state.scrollListener()
-  },
+  forceRefresh: () => resetScrollviews(state),
 
   getComponentLocation: (key) => {
     const { position } = fetchComponentByKey(key, state.locations)

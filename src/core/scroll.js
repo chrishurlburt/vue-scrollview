@@ -42,4 +42,5 @@ export const resetScrollviews = (state) => {
     location.position = getElDistanceTop(component)
     return location
   })
+  state.scrollListener()
 }
