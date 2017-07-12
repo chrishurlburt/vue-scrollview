@@ -18,7 +18,6 @@ import {
 export const initVueScrollview = ({ throttle, callbacks } = {}) => {
   const initialState = {
     callbacks,
-    scrollY: window.scrollY,
     scrollviews: {},
     locations: [],
     tracking: {},
@@ -38,7 +37,9 @@ export const initVueScrollview = ({ throttle, callbacks } = {}) => {
  */
 export const initializeScrollview = ({ _uid, $children }) => {
   return $children.reduce((data, { $el, $vnode: { key: child }}) => {
-    const position = getElDistanceTop($el)
+    const top = getElDistanceTop($el)
+    const bottom = top + $el.clientHeight
+    const position = { top, bottom }
     data.locations.push({
       position,
       scrollview: _uid,
