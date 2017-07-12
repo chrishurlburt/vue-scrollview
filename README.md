@@ -9,13 +9,13 @@
 vue-scrollview has undergone a complete rewrite. New features have been added, limitations have been removed and performance has been improved.
 
 
-- The 'ready' prop on ``` <Scroll-view></Scroll-view> ``` component in no longer necessary and has been eliminated. vue-scrollview is able to intelligently determine when to recache component locations.
-- There is no longer a limit to the amount of ``` <Scroll-view></Scroll-view> ``` components that can be mounted at a given time in your app. vue-scrollview tracks all components in a ``` <Scroll-view></Scroll-view> ```across all of it's instances.
+- The 'ready' prop on ``` <Scroll-view /> ``` component in no longer necessary and has been eliminated. vue-scrollview is able to intelligently determine when to recache component locations.
+- There is no longer a limit to the amount of ``` <Scroll-view /> ``` components that can be mounted at a given time in your app. vue-scrollview tracks all components in a ``` <Scroll-view /> ```across all of it's instances.
 - New methods for programmatically scrolling to component locations, getting component locations and more.
 
 ## Overview
 
-vue-scrollview is a Vue.js plugin which registers a ``` <Scroll-view></Scroll-view> ``` component globally. This component utilizes Vue's scoped slot API to notify its child components when they enter and leave visibility within the viewport. vue-scrollview can be used to trigger lazily-loaded resources, animate in components based on scroll location, and scroll spy navigations -- just to name a few use cases.
+vue-scrollview is a Vue.js plugin which registers a ``` <Scroll-view /> ``` component globally. This component utilizes Vue's scoped slot API to notify its child components when they enter and leave visibility within the viewport. vue-scrollview can be used to trigger lazily-loaded resources, animate in components based on scroll location, and scroll spy navigations -- just to name a few use cases.
 
 ## Installation
 
@@ -66,7 +66,7 @@ Vue.use(ScrollView, options)
 
 #### Scoped Slots
 
-The ``` <Scroll-view></Scroll-view> ``` component utilizes Vue.js scoped slots to facilitate
+The ``` <Scroll-view /> ``` component utilizes Vue.js scoped slots to facilitate
 communication with it's child components. Read more about scoped slots in the [Vue.js documentation](https://vuejs.org/v2/guide/components.html#Scoped-Slots).
 
 
@@ -137,10 +137,11 @@ const Child = {
 
 ### Ex. 4 - Programmatically navigate to components location on page
 
+### Ex. 5 - Multiple ``` <Scroll-view /> ```'s
 
 ## Props
 
-``` <Scroll-view></Scroll-view> ``` accepts some additional props to fine-tune configuration.
+``` <Scroll-view /> ``` accepts some additional props to fine-tune configuration.
 
 - ``` offset ``` - Number - Use to adjust when a component is considered 'in viewport', defaults to 200. This will cause a component to be registered as visible when it is 200px from the bottom while scrolling down or 200px from the top while scrolling up.
 
