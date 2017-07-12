@@ -104,16 +104,11 @@ Note, the value of the scope prop is set to the temporary variable name of 'inVi
 ```js
 
 const Child = {
-  template: '<div>some child component</div>',
-  watch: {
-    visible(val) {
-      if (val) {
-        console.log('im visible in the viewport!')
-      } else {
-        console.log('im no longer visible...')
-      }
-    }
-  },
+  template: `
+    <div :style="{background: (visible) ? 'red' : '#ccc'}" class="child">
+      some child component
+    </div>
+  `,
   props: {
     visible: {
       type: Boolean,
@@ -122,13 +117,13 @@ const Child = {
   }
 }
 
- new Vue({
+new Vue({
   el: '#scrollview-example',
   components: {
     'some-component': Child
   }
- })
-
+})
+ 
 ```
 
 ### Ex. 2 - Transitioning a component on enter/leave viewport
