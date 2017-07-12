@@ -74,7 +74,7 @@ const attachScrollListener = (state) => {
 const attachRecacheListener = (state) => {
   state.recacheEl = document.createElement('span')
   state.recacheEl.setAttribute('id', 'scrollview-recache')
-  document.querySelector('body').appendChild(state.recacheEl)
+  document.body.appendChild(state.recacheEl)
   setInterval(() => checkIfRecache(state, () => resetScrollviews(state)), 1000)
   return state
 }
