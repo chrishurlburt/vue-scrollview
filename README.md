@@ -148,7 +148,7 @@ const Child = {
 
 ## The $scrollview Object
 
-The $scrollview object is responsible for tracking component locations across all instances of ``` <Scroll-view /> ```, cacheing component locations and notifying ``` <Scroll-view /> ``` components when one of their children has become visible in the viewport. It also exposes several methods that can be used scroll to specific component, get a components location, or force vue-scrollview to recache all component locations.
+The $scrollview object is responsible for tracking component locations across all instances of ``` <Scroll-view /> ```, cacheing component locations and notifying ``` <Scroll-view /> ``` instances when one of their children has become visible in the viewport. It also exposes several methods that can be used to scroll to a specific component, get a components location, or force vue-scrollview to recache all component locations.
 
 ### Usage
 
