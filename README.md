@@ -86,6 +86,8 @@ Note, the value of the scope prop is set to the temporary variable name of 'inVi
 
 ### Ex. 1 - Detecting in viewport
 
+[Live Example](https://codepen.io/churlburt/pen/xrmgrj?editors=0110)
+
 ```html
   <div id="scrollview-example">
     <Scroll-view>
