@@ -146,6 +146,47 @@ const Child = {
 
 - ``` tag ``` - String - Use to control wrapper element of scrollview, defaults to 'span'.
 
+## The $scrollview Object
+
+The $scrollview object is responsible for tracking component locations across all instances of ``` <Scroll-view /> ```, cacheing component locations and notifying ``` <Scroll-view /> ``` components when one of their children has become visible in the viewport. It also exposes several methods that can be used scroll to specific component, get a components location, or force vue-scrollview to recache all component locations.
+
+### Usage
+
+```js
+
+import { $scrollview } from 'vue-scrollview'
+
+methods: {
+  goToSomeComponent(key) {
+    $scrollview.scrollToComponent(key, 200)
+  }
+}
+
+```
+
+### Methods
+
+#### scrollToComponent()
+The ``` scrollToComponent ``` method accepts two arguments, the key of a component in a ``` <Scroll-view /> ``` and optionally, an offset.
+
+``` $scrollview.scrollToComponent(key, offset) ```
+
+By default, ``` scrollToComponent ``` will scroll to a component's location on the page minus the offset assigned to the ``` <Scroll-view /> ``` it is within. You may also provide a custom offset as the second argument to override this.
+
+#### getComponentLocation()
+The ``` getComponentLocation ``` method accepts one argument, the key of a component in a ``` <Scroll-view /> ```.
+
+``` $scrollview.getComponentLocation(key) ```
+
+This method will return a component's distance from the top of viewport.
+
+#### forceRefresh()
+The ``` forceRefresh ``` methods is used to force vue-scrollview to recalculate all component positions and re-check for their visibility within the viewport.
+
+``` $scrollview.forceRefresh() ```
+
+It's unlikely you'll ever need to use this, but it's there if you need it.
+
 ## Development
 
 ### Build
