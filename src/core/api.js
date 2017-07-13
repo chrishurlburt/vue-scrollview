@@ -49,7 +49,7 @@ export const _public = (state) => ({
     const { position, scrollview } = fetchComponentByKey(key, state.locations)
     const { offset: defaultOffset } = state.scrollviews[scrollview]
     const scrollOffset = (offset !== undefined) ? offset : defaultOffset
-    window.scrollTo(0, position - scrollOffset)
+    window.scrollTo(0, position.top - scrollOffset)
     state.scrollListener()
   },
 
