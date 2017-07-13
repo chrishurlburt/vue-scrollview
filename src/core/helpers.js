@@ -41,3 +41,9 @@ export const keysAreUnique = (state, children) => {
  */
 export const fetchComponentByKey = (key, locations) =>
   locations.find(location => location.component === key)
+
+export const getElPosition = (el) => {
+  const top = getElDistanceTop(el)
+  const bottom = top + el.clientHeight
+  return { top, bottom }
+}
