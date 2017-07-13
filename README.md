@@ -126,7 +126,90 @@ new Vue({
  
 ```
 
+```css
+.container span {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 4000px;
+}
+
+.child {
+  height: 300px;
+  width: 300px;
+}
+```
+
 ### Ex. 2 - Transitioning a component on enter/leave viewport
+[Live Example](https://codepen.io/churlburt/pen/VWgqVL?editors=0110)
+
+```html
+<div id="scrollview-example">
+  <div class="container">
+    <Scroll-view>
+      <template scope="inView">
+        <Some-component :visible="inView.a" key="a"></Some-component>
+        <Some-component :visible="inView.b" key="b"></Some-component>
+        <Some-component :visible="inView.c" key="c"></Some-component>
+        <Some-component :visible="inView.d" key="d"></Some-component>
+      </template>
+    </Scroll-view>
+  </div>
+</div>
+```
+
+```js
+const Child = {
+  template: `
+    <div class="child">
+      <transition name="fade">
+        <div class="thing" v-if="visible"></div>
+      <transition />
+    </div>
+  `,
+  props: {
+    visible: {
+      type: Boolean,
+      default: () => false
+     }
+  }
+}
+
+new Vue({
+  el: '#scrollview-example',
+  components: {
+    'some-component': Child
+  }
+})
+```
+
+```css
+.container span {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 4000px;
+}
+
+.child {
+  height: 300px;
+  width: 300px;
+}
+
+.thing {
+  width: 100%;
+  height: 100%;
+  background: #1fc0de;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0
+}
+```
 
 
 ### Ex. 3 - Asynchronous operations on enter/leave viewport
