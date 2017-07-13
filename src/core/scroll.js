@@ -1,3 +1,5 @@
+import { getElPosition } from './helpers'
+
 /**
  * Creates the scroll listener function.
  *
@@ -49,7 +51,7 @@ export const resetScrollviews = (state) => {
   state.locations = state.locations.map((location) => {
     const component = state.scrollviews[location.scrollview].$children
       .find(child => child.$vnode.key === location.component).$el
-    location.position = component.getBoundingClientRect()
+    location.position = getElPosition(component)
     return location
   })
   state.scrollListener()

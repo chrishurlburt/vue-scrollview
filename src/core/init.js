@@ -1,7 +1,7 @@
 import flowright from 'lodash.flowright'
 import throttle from 'lodash.throttle'
 
-import { getElDistanceTop } from './helpers'
+import { getElDistanceTop, getElPosition } from './helpers'
 import {
   createScrollListener,
   checkInViewport,
@@ -37,9 +37,7 @@ export const initVueScrollview = ({ throttle, callbacks } = {}) => {
  */
 export const initializeScrollview = ({ _uid, $children }) => {
   return $children.reduce((data, { $el, $vnode: { key: child }}) => {
-    const top = getElDistanceTop($el)
-    const bottom = top + $el.clientHeight
-    const position = { top, bottom }
+    const position = getElPosition($el)
     data.locations.push({
       position,
       scrollview: _uid,
