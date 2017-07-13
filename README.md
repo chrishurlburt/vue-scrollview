@@ -213,7 +213,90 @@ new Vue({
 
 
 ### Ex. 3 - Asynchronous operations on enter/leave viewport
+[Live Example](https://codepen.io/churlburt/pen/gRqqbW?editors=0100)
 
+```html
+<div id="scrollview-example">
+  <div class="container">
+    <Scroll-view>
+      <template scope="inView">
+        <Some-component :visible="inView.a" key="a"></Some-component>
+        <Some-component :visible="inView.b" key="b"></Some-component>
+        <Some-component :visible="inView.c" key="c"></Some-component>
+        <Some-component :visible="inView.d" key="d"></Some-component>
+      </template>
+    </Scroll-view>
+  </div>
+</div>
+```
+
+```js
+const Child = {
+  template: `
+    <div class="child">
+      <div class="thing">
+        {{ this.randomData.body }}
+      </div>
+    </div>
+  `,
+  data() {
+    return {
+      loaded: false,
+      randomData: '',
+    }
+  },
+  watch: {
+    visible(visible) {
+      if (visible && !this.loaded) {
+        // fetch some data when the component enters visibility
+        fetch(`https://jsonplaceholder.typicode.com/posts/${Math.floor(Math.random() * 20 + 1)}`)
+          .then(res => res.json())
+          .then(data => {
+            this.randomData = data
+            this.loaded = true
+          })
+      }
+    }
+  },
+  props: {
+    visible: {
+      type: Boolean,
+      default: () => false
+     }
+  }
+}
+
+new Vue({
+  el: '#scrollview-example',
+  components: {
+    'some-component': Child
+  }
+})
+```
+
+```css
+.container span {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 4000px;
+}
+
+.child {
+  height: 300px;
+  width: 300px;
+}
+
+.thing {
+  width: 100%;
+  height: 100%;
+  background: #1fc0de;
+}
+
+pre {
+  max-width: 100%;
+}
+```
 
 ### Ex. 4 - Programmatically navigate to components location on page
 
