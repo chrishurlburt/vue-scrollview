@@ -295,6 +295,7 @@ new Vue({
 ```
 
 ### Ex. 4 - Programmatically navigate to components location on page
+[Live Example](https://codepen.io/churlburt/pen/LLqqmb?editors=0100)
 
 ```html
 <div id="scrollview-example">
@@ -360,6 +361,88 @@ new Vue({
   width: 100%;
   height: 100%;
   background: #1fc0de;
+}
+```
+
+### Ex. 5 - Multiple Scrollviews
+[Live Example](https://codepen.io/churlburt/pen/QgYoMw?editors=0100)
+
+```html
+<div id="scrollview-example">
+  <div class="container">
+    <Scroll-view>
+      <template scope="inView">
+        <Some-component :visible="inView.a" key="a"></Some-component>
+        <Some-component :visible="inView.b" key="b"></Some-component>
+        <Some-component :visible="inView.c" key="c"></Some-component>
+        <Some-component :visible="inView.d" key="d"></Some-component>
+      </template>
+    </Scroll-view>
+    
+     <p>Many scrollviews can be placed on a page, but all components across all scrollviews must have unique keys. This is a requirement of vue-scrollview so it can effeciently cache component locations and their visibility.</p>
+    
+    <Scroll-view>
+      <template scope="inView">
+        <Another-component :visible="inView.e" key="e"></Another-component>
+        <Another-component :visible="inView.f" key="f"></Another-component>
+        <Another-component :visible="inView.g" key="g"></Another-component>
+        <Another-component :visible="inView.h" key="h"></Another-component>
+      </template>
+    </Scroll-view>
+  </div>
+</div>
+```
+
+```js
+const Child = {
+  template: `
+    <div class="child" :style="{background: (visible) ? 'red' : '#ccc'}"></div>
+  `,
+  props: {
+    visible: {
+      type: Boolean,
+      default: () => false
+     },
+  }
+}
+
+const otherChild = {
+  template: `
+    <div class="child other" :style="{background: (visible) ? 'blue' : '#ccc'}"></div>
+  `,
+  props: {
+    visible: {
+      type: Boolean,
+      default: () => false
+     },
+  }
+}
+
+new Vue({
+  el: '#scrollview-example',
+  components: {
+    'some-component': Child,
+    'another-component': otherChild,
+  },
+})
+
+```
+
+```css
+.container span {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 4000px;
+}
+
+.child {
+  height: 300px;
+  width: 300px;
+}
+
+.child.other {
+  border-radius: 50%;
 }
 ```
 
