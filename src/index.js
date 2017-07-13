@@ -21,6 +21,7 @@ function plugin (Vue, options = {}) {
 // Install by default if using the script tag
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(plugin)
+  window.Vue.$scrollview = $scrollview
 }
 
 export default plugin
