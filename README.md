@@ -488,12 +488,12 @@ The ``` getComponentLocation ``` method accepts one argument, the key of a compo
 
 This method will return a component's distance from the top of viewport.
 
+#### refresh()
+For use after completion of an aync operation that causes new components to render within a scrollview. This method updates the components being tracked, recalculates their positions, and re-checks their visibility in the viewport.
+
 #### forceRefresh()
-The ``` forceRefresh ``` methods is used to force vue-scrollview to recalculate all component positions and re-check for their visibility within the viewport.
 
-``` $scrollview.forceRefresh() ```
-
-It's unlikely you'll ever need to use this, but it's there if you need it.
+DEPRECATED: see refresh()
 
 ## Development
 
