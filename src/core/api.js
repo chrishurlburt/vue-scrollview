@@ -54,7 +54,7 @@ export const _public = (state) => ({
   },
 
   /**
-   * Force refreshes the locations of components being tracked by scrollviews.
+   * DEPRECATED: see refresh()
    *
    * @returns null
    */
@@ -65,6 +65,11 @@ export const _public = (state) => ({
     resetScrollviews(state)
   },
 
+  /**
+   * Force refreshes the locations of components being tracked by scrollviews.
+   *
+   * @returns null
+   */
   refresh: () => resetScrollviews(state),
 
   /**
