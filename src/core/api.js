@@ -58,7 +58,14 @@ export const _public = (state) => ({
    *
    * @returns null
    */
-  forceRefresh: () => resetScrollviews(state),
+  forceRefresh: () => {
+    console.warn(
+      '[vue-scrollview]: $scrollview.forceRefresh() is deprecated and will be removed in the next major version. Please use $scrollview.refresh() instead.'
+    )
+    resetScrollviews(state)
+  },
+
+  refresh: () => resetScrollviews(state),
 
   /**
    * Fetches a components distance from the top of the viewport.

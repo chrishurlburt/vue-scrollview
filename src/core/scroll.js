@@ -1,5 +1,3 @@
-import { getElPosition } from './helpers'
-
 /**
  * Creates the scroll listener function.
  *
@@ -42,17 +40,20 @@ export const broadcastScrollviews = ({ scrollviews, tracking }) => {
 }
 
 /**
- * Resets cached component locations for ScrollView $vms
+ * Resets all components being tracked
  *
  * @param {Object} state - ScrollView tracking state.
  * @returns null
  */
 export const resetScrollviews = (state) => {
-  state.locations = state.locations.map((location) => {
-    const component = state.scrollviews[location.scrollview].$children
-      .find(child => child.$vnode.key === location.component).$el
-    location.position = getElPosition(component)
-    return location
-  })
+  const { scrollviews } = state
+
+  state.scrollviews = {}
+  state.tracking = {}
+  state.locations = []
+
+  Object.entries(scrollviews)
+    .forEach(([, scrollview]) => scrollview.$emit('tracking:reset'))
+
   state.scrollListener()
 }

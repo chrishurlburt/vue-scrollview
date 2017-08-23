@@ -17,6 +17,7 @@ export default {
   mounted () {
     this.tracking = $scrollview._track(this)
     this.$on('tracking:update', update => this.tracking = update)
+    this.$on('tracking:reset', () => this.tracking = $scrollview._track(this))
   },
   beforeDestroy () {
     $scrollview._untrack(this)
