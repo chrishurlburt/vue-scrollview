@@ -455,6 +455,33 @@ new Vue({
 }
 ```
 
+## v-for and asynchronous data
+
+Using ```v-for``` with asynchronous data in ```<Scroll-view>``` requires a bit of extra code. Because it is currently not possible for Vue.js components to react to the changing of components in a slot, you must notify ```<Scroll-view>``` manually when new components are added or removed -- usually as a result of ```v-for``` but ```v-if``` may be a culprit as well.
+
+```<Scroll-view>``` provides a utility method to refresh tracked components that may be called upon completion of an async operation. Refer to the example below as well as [the methods documentation](https://github.com/chrishurlburt/vue-scrollview#methods).
+
+
+```html
+<template>
+  <div>
+    <ul>
+      <li v-for="item in list">{{ item }}</li>
+    </ul>
+  </div>
+</template>
+```
+
+```js
+ajax.get('https://example.com') // example ajax request/async operation
+    .then(items => {
+        this.list = items // set your list in state with the data returned
+        Vue.nextTick(() => $scrollview.refresh()) // tell scrollview to update its tracking with newly rendered components
+    })
+```
+
+Note the use of Vue.nextTick. This is necessary so the components are rendered before ```<Scroll-view>``` attempts to track them.
+
 ## Props
 
 ``` <Scroll-view></Scroll-view> ``` accepts some additional props to fine-tune configuration.
