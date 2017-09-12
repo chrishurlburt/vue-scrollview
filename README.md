@@ -6,12 +6,12 @@
 
 # Contents
 - [Overview](https://github.com/chrishurlburt/vue-scrollview#overview)
-- [Installation & Configuration](https://github.com/chrishurlburt/vue-scrollview#Installation)
-- [Usage](https://github.com/chrishurlburt/vue-scrollview#Usage)
-- [Examples](https://github.com/chrishurlburt/vue-scrollview#Practical-Use-Cases)
-- [Props](https://github.com/chrishurlburt/vue-scrollview#Props)
-- [The $scrollview Object](https://github.com/chrishurlburt/vue-scrollview#The-$scrollview-Object)
-- [Methods](https://github.com/chrishurlburt/vue-scrollview#Methods)
+- [Installation & Configuration](https://github.com/chrishurlburt/vue-scrollview#installation)
+- [Usage](https://github.com/chrishurlburt/vue-scrollview#usage)
+- [Examples](https://github.com/chrishurlburt/vue-scrollview#practical-use-cases)
+- [Props](https://github.com/chrishurlburt/vue-scrollview#props)
+- [The $scrollview Object](https://github.com/chrishurlburt/vue-scrollview#the-scrollview-object)
+- [Methods](https://github.com/chrishurlburt/vue-scrollview#methods)
 
 ***vue-scrollview v2.0 improvements***
 
