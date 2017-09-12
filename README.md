@@ -4,6 +4,15 @@
 
 > A flexible and performant Vue.js component for notifying components when they enter and leave the viewport.
 
+# Contents
+- [Overview](https://github.com/chrishurlburt/vue-scrollview/edit/master/README.md#Overview)
+- [Installation & Configuration](https://github.com/chrishurlburt/vue-scrollview/edit/master/README.md#Installation)
+- [Usage](https://github.com/chrishurlburt/vue-scrollview/edit/master/README.md#Usage)
+- [Examples](https://github.com/chrishurlburt/vue-scrollview/edit/master/README.md#Practical-Use-Cases)
+- [Props](https://github.com/chrishurlburt/vue-scrollview/edit/master/README.md#Props)
+- [The $scrollview Object](https://github.com/chrishurlburt/vue-scrollview/edit/master/README.md#The-$scrollview-Object)
+- [Methods](https://github.com/chrishurlburt/vue-scrollview/edit/master/README.md#Methods)
+
 ***vue-scrollview v2.0 improvements***
 
 vue-scrollview has undergone a complete rewrite. New features have been added, limitations have been removed and performance has been improved.
