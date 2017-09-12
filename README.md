@@ -9,6 +9,7 @@
 - [Installation & Configuration](https://github.com/chrishurlburt/vue-scrollview#installation)
 - [Usage](https://github.com/chrishurlburt/vue-scrollview#usage)
 - [Examples](https://github.com/chrishurlburt/vue-scrollview#practical-use-cases)
+- [v-for and asynchronous data](https://github.com/chrishurlburt/vue-scrollview#v-for-and-asynchronous-data)
 - [Props](https://github.com/chrishurlburt/vue-scrollview#props)
 - [The $scrollview Object](https://github.com/chrishurlburt/vue-scrollview#the-scrollview-object)
 - [Methods](https://github.com/chrishurlburt/vue-scrollview#methods)
