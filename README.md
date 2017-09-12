@@ -19,13 +19,13 @@
 vue-scrollview has undergone a complete rewrite. New features have been added, limitations have been removed and performance has been improved.
 
 
-- The 'ready' prop on ``` <Scroll-view></Scroll-view> ``` component in no longer necessary and has been eliminated. vue-scrollview is able to intelligently determine when to recache component locations.
-- There is no longer a limit to the amount of ``` <Scroll-view></Scroll-view> ``` components that can be mounted at a given time in your app. vue-scrollview tracks all components in a ``` <Scroll-view></Scroll-view> ```across all of it's instances.
+- The 'ready' prop on ```<Scroll-view>``` component in no longer necessary and has been eliminated. vue-scrollview is able to intelligently determine when to recache component locations.
+- There is no longer a limit to the amount of ```<Scroll-view>``` components that can be mounted at a given time in your app. vue-scrollview tracks all components in a ```<Scroll-view>```across all of it's instances.
 - New methods for programmatically scrolling to component locations, getting component locations and more.
 
 ## Overview
 
-vue-scrollview is a Vue.js plugin which registers a ``` <Scroll-view></Scroll-view> ``` component globally. This component utilizes Vue's scoped slot API to notify its child components when they enter and leave visibility within the viewport. vue-scrollview can be used to trigger lazily-loaded resources, animate in components based on scroll location, and scroll spy navigations -- just to name a few use cases.
+vue-scrollview is a Vue.js plugin which registers a ```<Scroll-view>``` component globally. This component utilizes Vue's scoped slot API to notify its child components when they enter and leave visibility within the viewport. vue-scrollview can be used to trigger lazily-loaded resources, animate in components based on scroll location, and scroll spy navigations -- just to name a few use cases.
 
 ## Installation
 
@@ -76,7 +76,7 @@ Vue.use(ScrollView, options)
 
 #### Scoped Slots
 
-The ``` <Scroll-view></Scroll-view> ``` component utilizes Vue.js scoped slots to facilitate
+The ``` <Scroll-view>``` component utilizes Vue.js scoped slots to facilitate
 communication with it's child components. Read more about scoped slots in the [Vue.js documentation](https://vuejs.org/v2/guide/components.html#Scoped-Slots).
 
 
@@ -89,7 +89,7 @@ vue-scrollview requires the use of a __unique__ key prop on the slotted componen
 
 Refer to the example below. Each of the 4 components is designed to accept a 'visible' prop which is a boolean that indicates whether the component is visible within the viewport. For the purpose of this example, the name 'visible' is used, however you can name this prop whatever you like.
 
-The visible prop recieves the the value of scope, which is an object containing properties that track each components visibility by the key provided by the key prop. inView.a holds a boolean that indicates the visibility of ``` <Some-component></Some-component> ``` with a key of 'a' within the viewport, inView.b indicates visibility for  ``` <Some-component></Some-component> ``` with key of 'b', etc.
+The visible prop recieves the the value of scope, which is an object containing properties that track each components visibility by the key provided by the key prop. inView.a holds a boolean that indicates the visibility of ``` <Some-component>``` with a key of 'a' within the viewport, inView.b indicates visibility for  ``` <Some-component>``` with key of 'b', etc.
 
 Note, the value of the scope prop is set to the temporary variable name of 'inView' but any name may be used here.
 
@@ -133,7 +133,7 @@ new Vue({
     'some-component': Child
   }
 })
- 
+
 ```
 
 ```css
@@ -388,9 +388,9 @@ new Vue({
         <Some-component :visible="inView.d" key="d"></Some-component>
       </template>
     </Scroll-view>
-    
-     <p>Many scrollviews can be placed on a page, but all components across all scrollviews must have unique keys. This is a requirement of vue-scrollview so it can effeciently cache component locations and their visibility.</p>
-    
+
+     <p>Many scrollviews can be placed on a page, but all components across all scrollviews must have unique keys. This is a requirement of vue-scrollview so it can efficiently cache component locations and their visibility.</p>
+
     <Scroll-view>
       <template scope="inView">
         <Another-component :visible="inView.e" key="e"></Another-component>
@@ -481,7 +481,7 @@ ajax.get('https://example.com') // example ajax request/async operation
     })
 ```
 
-Note the use of Vue.nextTick. This is necessary so the components are rendered before ```<Scroll-view>``` attempts to track them.
+Note the use of ```Vue.nextTick```. This is necessary so the components are rendered before ```<Scroll-view>``` attempts to track them.
 
 ## Props
 
