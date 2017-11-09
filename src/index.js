@@ -1,4 +1,3 @@
-import { initVueScrollview } from './core/init'
 import { _public, _private } from './core/api'
 import ScrollView from './ScrollView'
 
@@ -7,12 +6,20 @@ let $scrollview
 function plugin (Vue, options = {}) {
   const throttle = options.throttle || 50
   const callbacks = options.callbacks || []
-  const state = initVueScrollview({ throttle, callbacks })
+
+  const initialState = {
+    callbacks,
+    throttle,
+    scrollviews: {},
+    locations: [],
+    tracking: {},
+    bottom: 0
+  }
 
   $scrollview = {
-    state,
-    ..._private(state),
-    ..._public(state)
+    state: initialState,
+    ..._private(initialState),
+    ..._public(initialState)
   }
 
   Vue.component('ScrollView', ScrollView)

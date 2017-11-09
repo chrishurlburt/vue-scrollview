@@ -1,5 +1,11 @@
+import flowright from 'lodash.flowright'
+
 import { keysAreUnique, fetchComponentByKey } from './helpers'
-import { initializeScrollview } from './init'
+import {
+  initializeScrollview,
+  attachScrollListener,
+  attachRecacheListener
+} from './init'
 import { checkInViewport, resetScrollviews } from './scroll'
 
 export const _private = (state) => ({
@@ -32,6 +38,24 @@ export const _private = (state) => ({
   _untrack: ({ _uid }) => {
     delete state.tracking[_uid]
     state.locations = state.locations.filter(location => location.scrollview !== _uid)
+  },
+
+  /**
+   * Sets up the scroll listener and recache listener. This gets
+   * called in the mounted hook of every scrollview component for SSR
+   * compatibility. The listeners are only actually attached if they
+   * havent already been by a previous invocation.
+   *
+   * @param {Object} options - options passed on plugin installation.
+   * @returns {Object} The inital state object.
+   */
+  _initVueScrollview: () => {
+    if (!state.scrollListener && !state.recacheEl) {
+      return flowright(
+        attachRecacheListener,
+        attachScrollListener
+      )(state)
+    }
   }
 
 })

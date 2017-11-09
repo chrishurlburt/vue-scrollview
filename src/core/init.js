@@ -1,4 +1,3 @@
-import flowright from 'lodash.flowright'
 import throttle from 'lodash.throttle'
 
 import { getElDistanceTop, getElPosition } from './helpers'
@@ -8,26 +7,6 @@ import {
   broadcastScrollviews,
   resetScrollviews
 } from './scroll'
-
-/**
- * Creates the initial state for tracking ScrollView children.
- *
- * @param {Object} options - options passed on plugin installation.
- * @returns {Object} The inital state object.
- */
-export const initVueScrollview = ({ throttle, callbacks } = {}) => {
-  const initialState = {
-    callbacks,
-    scrollviews: {},
-    locations: [],
-    tracking: {},
-    bottom: 0
-  }
-  return flowright(
-    attachRecacheListener,
-    attachScrollListener
-  )(initialState)
-}
 
 /**
  * Initializes a ScrollView $vm into tracking.
@@ -54,7 +33,7 @@ export const initializeScrollview = ({ _uid, $children }) => {
  * @param {Object} state - ScrollView tracking state.
  * @returns {Object} ScrollView tracking state.
  */
-const attachScrollListener = (state) => {
+export const attachScrollListener = (state) => {
   state.scrollListener = throttle(
     createScrollListener(state, checkInViewport, broadcastScrollviews, ...state.callbacks),
     state.throttle,
@@ -70,7 +49,7 @@ const attachScrollListener = (state) => {
  * @param {Object} state - ScrollView tracking state.
  * @returns {Object} ScrollView tracking state.
  */
-const attachRecacheListener = (state) => {
+export const attachRecacheListener = (state) => {
   state.recacheEl = document.createElement('span')
   state.recacheEl.setAttribute('id', 'scrollview-recache')
   document.body.appendChild(state.recacheEl)
