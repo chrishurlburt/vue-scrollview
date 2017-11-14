@@ -22,8 +22,8 @@ export const createScrollListener = (state, ...fns) => {
 export const checkInViewport = (state) => {
   state.locations.forEach(({ position, scrollview, component }) => {
     const { offset } = state.scrollviews[scrollview]
-    const withinTopBounds = (position.bottom - offset) - window.scrollY > 0
-    const withinBottomBounds = (position.top + offset) - window.scrollY <= window.innerHeight
+    const withinTopBounds = (position.bottom - offset) - window.pageYOffset > 0
+    const withinBottomBounds = (position.top + offset) - window.pageYOffset <= window.innerHeight
     state.tracking[scrollview][component] = (withinTopBounds && withinBottomBounds)
   })
 }
