@@ -15,6 +15,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "node build/build.js",
+    "app": "cd ./test/e2e/test-app && webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "lint:staged": "lint-staged",
     "pretest": "npm run lint",
     "e2e": "node test/e2e/runner.js",
