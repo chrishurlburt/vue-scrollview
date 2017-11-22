@@ -23,7 +23,10 @@ export const getElDistanceTop = (el) => {
  * @returns {Boolean}
  */
 export const keysAreUnique = (state, children) => {
-  const exists = children.find(({ $vnode: { key }}) => {
+  const keys = children.map(({ $vnode: { key }}) => key)
+  if (hasDuplicates(keys)) return false
+
+  const exists = keys.find(key => {
     const match = state.locations.find(({ component }) => {
       return component === key
     })
@@ -47,3 +50,5 @@ export const getElPosition = (el) => {
   const bottom = top + el.clientHeight
   return { top, bottom }
 }
+
+export const hasDuplicates = (array) => (new Set(array)).size !== array.length

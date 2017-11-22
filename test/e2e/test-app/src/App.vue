@@ -3,12 +3,17 @@
     <div class="controls">
       <button class="async-add-components" @click="asyncAddComponents">Async Add Components</button>
       <button class="scroll-by-key" @click="scrollToComponent">Scroll to component with key of "c"</button>
+      <button class="set-offset" @click="setOffset">Set offset to 349</button>
+      <button class="duplicate-key" @click="setDuplicateKey">Add component with duplicate key of 'a'</button>
     </div>
-    <Scroll-view>
+    <Scroll-view :offset="offset">
         <template slot-scope="inView">
+            <Visibility-marker v-if="duplicateKey" key="a" />
+
             <Visibility-marker key="a" :visible="inView.a" />
             <Visibility-marker key="b" :visible="inView.b" />
             <Visibility-marker key="c" :visible="inView.c" />
+
 
             <Visibility-marker v-for="k in componentsToAddKeys" :key="k" :visible="inView[k]" />
         </template>
@@ -23,7 +28,7 @@ import VisibilityMarker from './components/VisibilityMarker'
 export default {
   name: 'app',
   data() {
-    return { componentsToAddKeys: [] }
+    return { componentsToAddKeys: [], offset: 200, duplicateKey: false, }
   },
   components: {
     VisibilityMarker
@@ -37,6 +42,13 @@ export default {
     },
     scrollToComponent() {
       $scrollview.scrollToComponent('c')
+    },
+    setOffset() {
+      this.offset = 349
+    },
+    setDuplicateKey() {
+      this.duplicateKey = true
+      $scrollview.refresh()
     }
   },
 }

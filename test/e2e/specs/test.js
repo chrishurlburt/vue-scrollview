@@ -59,6 +59,21 @@ module.exports = {
       .execute("window.scrollTo(0, 200)")
       .pause(500)
       .assert.cssClassNotPresent('.visibility-marker.a', 'visible')
-      .end()      
-  }
+           
+  },
+  'test dynamic offsets': function (browser) {
+    browser
+      .execute("window.scrollTo(0,0)")
+      .pause(500)
+      .assert.cssClassPresent('.visibility-marker.a', 'visible')
+      .click('.set-offset')
+      .pause(200)
+      .execute("window.scrollTo(0,50)")
+      .pause(500)
+      .assert.cssClassNotPresent('.visibility-marker.a', 'visible')
+  },
+  'document has scrollview recache element': function (browser) {
+    browser
+      .assert.elementPresent('#scrollview-recache')
+  },
 }

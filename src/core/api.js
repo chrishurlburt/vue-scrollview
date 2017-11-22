@@ -37,6 +37,7 @@ export const _private = (state) => ({
    */
   _untrack: ({ _uid }) => {
     delete state.tracking[_uid]
+    delete state.scrollviews[_uid]
     state.locations = state.locations.filter(location => location.scrollview !== _uid)
   },
 
