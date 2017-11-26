@@ -1,3 +1,5 @@
+// @flow
+import type { State, ScrollviewPrivateAPI, ScrollviewPublicAPI } from '../../types'
 import flowright from 'lodash.flowright'
 
 import { keysAreUnique, fetchComponentByKey } from './helpers'
@@ -8,7 +10,7 @@ import {
 } from './init'
 import { checkInViewport, resetScrollviews } from './scroll'
 
-export const _private = (state) => ({
+export const _private = (state: State): ScrollviewPrivateAPI => ({
 
   /**
    * Initiates tracking on a new scrollview component.
@@ -61,7 +63,7 @@ export const _private = (state) => ({
 
 })
 
-export const _public = (state) => ({
+export const _public = (state: State): ScrollviewPublicAPI => ({
 
   /**
    * Scrolls the page to a component.
@@ -71,11 +73,14 @@ export const _public = (state) => ({
    * @returns null
    */
   scrollToComponent: (key, offset) => {
-    const { position, scrollview } = fetchComponentByKey(key, state.locations)
-    const { offset: defaultOffset } = state.scrollviews[scrollview]
-    const scrollOffset = (offset !== undefined) ? offset : defaultOffset
-    window.scrollTo(0, position.top - scrollOffset)
-    state.scrollListener()
+    const component = fetchComponentByKey(key, state.locations)
+    if (component) {
+      const { position, scrollview } = component
+      const { offset: defaultOffset } = state.scrollviews[scrollview]
+      const scrollOffset = (offset !== undefined) ? offset : defaultOffset
+      window.scrollTo(0, position.top - scrollOffset)
+      if (state.scrollListener) state.scrollListener()
+    }
   },
 
   /**
@@ -85,7 +90,7 @@ export const _public = (state) => ({
    */
   forceRefresh: () => {
     console.warn(
-      '[vue-scrollview]: $scrollview.forceRefresh() is deprecated and will be removed in the next major version. Please use $scrollview.refresh() instead.'
+      '[vue-scrollview]: $scrollsview.forceRefresh() is deprecated and will be removed in the next major version. Please use $scrollview.refresh() instead.'
     )
     resetScrollviews(state)
   },
@@ -104,8 +109,10 @@ export const _public = (state) => ({
    * @returns {Number}
    */
   getComponentLocation: (key) => {
-    const { position } = fetchComponentByKey(key, state.locations)
-    return position
+    const component = fetchComponentByKey(key, state.locations)
+    if (component) {
+      return component.position
+    }
   }
 
 })

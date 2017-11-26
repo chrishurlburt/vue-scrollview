@@ -1,13 +1,14 @@
+// @flow
+import type { State } from '../types'
 import { _public, _private } from './core/api'
 import ScrollView from './ScrollView'
-
 let $scrollview
 
-function plugin (Vue, options = {}) {
+function plugin (Vue: Function, options: Object = {}) {
   const throttle = options.throttle || 50
   const callbacks = options.callbacks || []
 
-  const initialState = {
+  const initialState: State = {
     callbacks,
     throttle,
     scrollviews: {},

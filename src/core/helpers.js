@@ -1,10 +1,14 @@
+// @flow
+
+import type { State, ComponentKey, LocationsList, ComponentLocation } from '../../types'
+
 /**
  * Get an element's distance from the top of the viewport.
  *
  * @param {Object} el - A DOM element.
  * @returns {Number}
  */
-export const getElDistanceTop = (el) => {
+export const getElDistanceTop = (el: any): number => { // eslint-disable-line
   let location = 0
   if (el.offsetParent) {
     do {
@@ -22,7 +26,7 @@ export const getElDistanceTop = (el) => {
  * @param {Array} children - A ScrollView $vm children nodes
  * @returns {Boolean}
  */
-export const keysAreUnique = (state, children) => {
+export const keysAreUnique = (state: State, children: Array<{$vnode: { key: number }, $el: HTMLElement }>): boolean => { // eslint-disable-line
   const keys = children.map(({ $vnode: { key }}) => key)
   if (hasDuplicates(keys)) return false
 
@@ -42,13 +46,13 @@ export const keysAreUnique = (state, children) => {
  * @param {Array} locations - The locations of currently tracked components.
  * @returns {(Object|Boolean)}
  */
-export const fetchComponentByKey = (key, locations) =>
+export const fetchComponentByKey = (key: ComponentKey, locations: LocationsList): ComponentLocation | void =>
   locations.find(location => location.component === key)
 
-export const getElPosition = (el) => {
+export const getElPosition = (el: any) => { // eslint-disable-line
   const top = getElDistanceTop(el)
   const bottom = top + el.clientHeight
   return { top, bottom }
 }
 
-export const hasDuplicates = (array) => (new Set(array)).size !== array.length
+export const hasDuplicates = (array: Array<mixed>) => (new Set(array)).size !== array.length

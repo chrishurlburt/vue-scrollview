@@ -6,6 +6,7 @@ const buble = require('rollup-plugin-buble')
 const replace = require('rollup-plugin-replace')
 const cjs = require('rollup-plugin-commonjs')
 const node = require('rollup-plugin-node-resolve')
+const flow = require('rollup-plugin-flow')
 const uglify = require('uglify-js')
 // const CleanCSS = require('clean-css')
 
@@ -26,6 +27,7 @@ function rollupBundle ({ env }) {
   return rollup({
     entry: 'src/index.js',
     plugins: [
+      flow(),
       node({
         extensions: ['.js', '.jsx', '.vue']
       }),

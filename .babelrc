@@ -13,13 +13,14 @@
   ],
   "plugins": [
     "transform-vue-jsx",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    "transform-class-properties",
+    "syntax-flow",
+    "transform-flow-strip-types"
   ],
   "env": {
     "test": {
-      "plugins": [
-        "istanbul"
-      ]
+      "presets": ["env", "stage-2"]
     }
   }
 }

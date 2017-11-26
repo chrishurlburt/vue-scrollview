@@ -1,3 +1,6 @@
+// @flow
+import type { State } from '../../types'
+
 /**
  * Creates the scroll listener function.
  *
@@ -5,10 +8,10 @@
  * @param {Array} fns - Functions to call on scroll.
  * @returns null
  */
-export const createScrollListener = (state, ...fns) => {
+export const createScrollListener = (state: State, fns: Array<?Function>) => {
   return () => {
     window.requestAnimationFrame(() => {
-      fns.forEach(fn => fn(state))
+      fns.forEach(fn => fn && fn(state))
     })
   }
 }
@@ -19,7 +22,7 @@ export const createScrollListener = (state, ...fns) => {
  * @param {Object} state - ScrollView tracking state.
  * @returns null
  */
-export const checkInViewport = (state) => {
+export const checkInViewport = (state: State) => {
   state.locations.forEach(({ position, scrollview, component }) => {
     const { offset } = state.scrollviews[scrollview]
     const withinTopBounds = (position.bottom - offset) - window.pageYOffset > 0
@@ -34,7 +37,7 @@ export const checkInViewport = (state) => {
  * @param {Object} state - ScrollView tracking state.
  * @returns null
  */
-export const broadcastScrollviews = ({ scrollviews, tracking }) => {
+export const broadcastScrollviews = ({ scrollviews, tracking }: State) => {
   Object.keys(scrollviews)
     .forEach(scrollview => scrollviews[scrollview].$emit('tracking:update', tracking[scrollview]))
 }
@@ -45,15 +48,15 @@ export const broadcastScrollviews = ({ scrollviews, tracking }) => {
  * @param {Object} state - ScrollView tracking state.
  * @returns null
  */
-export const resetScrollviews = (state) => {
+export const resetScrollviews = (state: State) => {
   const { scrollviews } = state
 
   state.scrollviews = {}
   state.tracking = {}
   state.locations = []
 
-  Object.entries(scrollviews)
-    .forEach(([, scrollview]) => scrollview.$emit('tracking:reset'))
+  Object.keys(scrollviews)
+    .forEach((key) => scrollviews[key].$emit('tracking:reset'))
 
-  state.scrollListener()
+  if (state.scrollListener) state.scrollListener()
 }

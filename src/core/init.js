@@ -1,3 +1,6 @@
+// @flow
+import type { State, ScrollviewComponent } from '../../types'
+
 import throttle from 'lodash.throttle'
 
 import { getElDistanceTop, getElPosition } from './helpers'
@@ -14,7 +17,7 @@ import {
  * @param {Object} ScrollView - The ScrollView $vm
  * @returns {Object} Component locations and ScrollViews being tracked.
  */
-export const initializeScrollview = ({ _uid, $children }) => {
+export const initializeScrollview = ({ _uid, $children }: ScrollviewComponent) => {
   return $children.reduce((data, { $el, $vnode: { key: child }}) => {
     const position = getElPosition($el)
     data.locations.push({
@@ -33,9 +36,9 @@ export const initializeScrollview = ({ _uid, $children }) => {
  * @param {Object} state - ScrollView tracking state.
  * @returns {Object} ScrollView tracking state.
  */
-export const attachScrollListener = (state) => {
+export const attachScrollListener = (state: State) => {
   state.scrollListener = throttle(
-    createScrollListener(state, checkInViewport, broadcastScrollviews, ...state.callbacks),
+    createScrollListener(state, [checkInViewport, broadcastScrollviews, ...state.callbacks]),
     state.throttle,
     { leading: true }
   )
@@ -49,10 +52,10 @@ export const attachScrollListener = (state) => {
  * @param {Object} state - ScrollView tracking state.
  * @returns {Object} ScrollView tracking state.
  */
-export const attachRecacheListener = (state) => {
+export const attachRecacheListener = (state: State): State => {
   state.recacheEl = document.createElement('span')
   state.recacheEl.setAttribute('id', 'scrollview-recache')
-  document.body.appendChild(state.recacheEl)
+  if (document.body && state.recacheEl) document.body.appendChild(state.recacheEl)
   setInterval(() => checkIfRecache(state, () => resetScrollviews(state)), 1000)
   return state
 }
@@ -64,8 +67,10 @@ export const attachRecacheListener = (state) => {
  * @param {Function} resetFn - Function that dicates how to recache.
  * @returns null
  */
-const checkIfRecache = (state, resetFn) => {
-  const currentBottom = getElDistanceTop(state.recacheEl)
-  if (currentBottom !== state.bottom) resetFn()
-  state.bottom = currentBottom
+const checkIfRecache = (state: State, resetFn) => {
+  if (state.recacheEl) {
+    const currentBottom = getElDistanceTop(state.recacheEl)
+    if (currentBottom !== state.bottom) resetFn()
+    state.bottom = currentBottom
+  }
 }
