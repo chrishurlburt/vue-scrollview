@@ -15,6 +15,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "flow && node build/build.js",
+    "build:example": "cd ./examples/build && node build.js",    
     "example": "cd ./examples && webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "lint": "eslint --ext js --ext jsx --ext vue src test/**/*.spec.js test/*.js build",
     "lint:staged": "lint-staged",
@@ -59,6 +60,10 @@
     ]
   },
   "pre-commit": "lint:staged",
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "^1.0.2",
     "autoprefixer": "^7.1.2",
