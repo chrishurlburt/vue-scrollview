@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <section class="test">
     <div class="controls">
       <button class="async-add-components" @click="asyncAddComponents">Async Add Components</button>
       <button class="scroll-by-key" @click="scrollToComponent">Scroll to component with key of "c"</button>
@@ -14,19 +14,17 @@
             <Visibility-marker key="b" :visible="inView.b" />
             <Visibility-marker key="c" :visible="inView.c" />
 
-
             <Visibility-marker v-for="k in componentsToAddKeys" :key="k" :visible="inView[k]" />
         </template>
     </Scroll-view>
-  </div>
+  </section>
 </template>
 
 <script>
 import { $scrollview } from '../../../../src'
-import VisibilityMarker from './components/VisibilityMarker'
+import VisibilityMarker from '../VisibilityMarker'
 
 export default {
-  name: 'app',
   data() {
     return { componentsToAddKeys: [], offset: 200, duplicateKey: false, }
   },
@@ -54,12 +52,7 @@ export default {
 }
 </script>
 
-<style>
-body, html {
-  margin: 0;
-  padding: 0;
-}
-
+<style scoped>
 .controls {
   position: fixed;
   top: 15px;
