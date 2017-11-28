@@ -2,17 +2,19 @@
   <section class="home">
       <h1 class="title">ScrollView Examples</h1>
       <div class="examples">
-        <a href="/#/animation">Animation</a>
-        <a href="/#/lazy-load">Lazy Loading</a>
-        <a href="/#/scrollspy">Scrollspy Navigation</a>
-        <a href="/#/scroll-markers">Scroll Markers</a>
+        <a :href="`${path}#/animation`">Animation</a>
+        <a :href="`${path}#/lazy-load`">Lazy Loading</a>
+        <a :href="`${path}#/scrollspy`">Scrollspy Navigation</a>
+        <a :href="`${path}#/scroll-markers`">Scroll Markers</a>
       </div>
   </section>
 </template>
 
 <script>
 export default {
-  
+  created() {
+    this.path = __webpack_public_path__
+  }
 }
 </script>
 
