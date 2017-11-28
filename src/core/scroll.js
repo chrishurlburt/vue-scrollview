@@ -32,6 +32,17 @@ export const checkInViewport = (state: State) => {
 }
 
 /**
+ * Sets the scroll direction based on previous scrollY.
+ *
+ * @returns null
+ */
+export const setScrollDirection = (state: State): void => {
+  if (state.previousScrollLocation <= window.pageYOffset) state.scrollDirection = 'DOWN'
+  else state.scrollDirection = 'UP'
+  state.previousScrollLocation = window.pageYOffset
+}
+
+/**
  * Emits events on ScrollView $vms to update tracking for children.
  *
  * @param {Object} state - ScrollView tracking state.

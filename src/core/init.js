@@ -8,7 +8,8 @@ import {
   createScrollListener,
   checkInViewport,
   broadcastScrollviews,
-  resetScrollviews
+  resetScrollviews,
+  setScrollDirection
 } from './scroll'
 
 /**
@@ -36,9 +37,12 @@ export const initializeScrollview = ({ _uid, $children }: ScrollviewComponent) =
  * @param {Object} state - ScrollView tracking state.
  * @returns {Object} ScrollView tracking state.
  */
-export const attachScrollListener = (state: State) => {
+export const attachScrollListener = (state: State): State => {
   state.scrollListener = throttle(
-    createScrollListener(state, [checkInViewport, broadcastScrollviews, ...state.callbacks]),
+    createScrollListener(
+      state,
+      [checkInViewport, broadcastScrollviews, setScrollDirection, ...state.callbacks]
+    ),
     state.throttle,
     { leading: true }
   )

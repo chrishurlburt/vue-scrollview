@@ -10,22 +10,25 @@ export type State = {
         [number | string]: ComponentVisibility
     },
     bottom: number,
+    previousScrollLocation: number,
+    scrollDirection: ScrollDirection,
     scrollListener?: () => void,
     recacheEl?: HTMLSpanElement // eslint-disable-line
 }
 
-export type ScrollviewPrivateAPI = {
+export type ScrollviewPrivateAPI = {|
     _track(ScrollviewComponent): ComponentVisibility,
     _untrack({ _uid: number }): void,
     _initVueScrollview(): void,
-}
+|}
 
-export type ScrollviewPublicAPI = {
-    scrollToComponent: (ComponentKey, number) => void,
-    forceRefresh: () => void,
-    refresh: () => void,
-    getComponentLocation: (ComponentKey) => ComponentPosition | void,
-}
+export type ScrollviewPublicAPI = {|
+    scrollToComponent(ComponentKey, number): void,
+    forceRefresh(): void,
+    refresh(): void,
+    getComponentLocation(ComponentKey): ComponentPosition | void,
+    getScrollDirection(): ScrollDirection
+|}
 
 export type ScrollviewComponent = {
     $emit: Function,
@@ -53,3 +56,5 @@ export type ComponentPosition = {
 export type ComponentVisibility = {
     [ComponentKey]: boolean
 }
+
+export type ScrollDirection = "UP" | "DOWN"

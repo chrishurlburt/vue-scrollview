@@ -1,6 +1,12 @@
 // @flow
 
-import type { State, ComponentKey, LocationsList, ComponentLocation } from '../../types'
+import type {
+  State,
+  ComponentKey,
+  LocationsList,
+  ComponentLocation,
+  ComponentPosition
+} from '../../types'
 
 /**
  * Get an element's distance from the top of the viewport.
@@ -49,10 +55,22 @@ export const keysAreUnique = (state: State, children: Array<{$vnode: { key: numb
 export const fetchComponentByKey = (key: ComponentKey, locations: LocationsList): ComponentLocation | void =>
   locations.find(location => location.component === key)
 
-export const getElPosition = (el: any) => { // eslint-disable-line
+/**
+ * Gets an elements position from the top of the page to the top and bottom of the element.
+ *
+ * @param {Obect} el - A DOM element.
+ * @returns {(Object)}
+ */
+export const getElPosition = (el: any): ComponentPosition => { // eslint-disable-line
   const top = getElDistanceTop(el)
   const bottom = top + el.clientHeight
   return { top, bottom }
 }
 
-export const hasDuplicates = (array: Array<mixed>) => (new Set(array)).size !== array.length
+/**
+ * Determines if an array has purely unique values.
+ *
+ * @param {Array} array - The array to check.
+ * @returns {(Boolean)}
+ */
+export const hasDuplicates = (array: Array<mixed>): boolean => (new Set(array)).size !== array.length

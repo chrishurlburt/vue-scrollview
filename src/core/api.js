@@ -113,6 +113,10 @@ export const _public = (state: State): ScrollviewPublicAPI => ({
     if (component) {
       return component.position
     }
+  },
+
+  getScrollDirection: () => {
+    return state.scrollDirection
   }
 
 })
