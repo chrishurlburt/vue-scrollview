@@ -1,4 +1,4 @@
-import { $scrollview } from './index'
+import { $scrollview } from '../index'
 
 export default {
   render (h) {

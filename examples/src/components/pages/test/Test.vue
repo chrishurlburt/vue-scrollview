@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import { $scrollview } from '../../../../src'
-import VisibilityMarker from '../VisibilityMarker'
+import { $scrollview } from '../../../../../src'
+import VisibilityMarker from './VisibilityMarker'
 
 export default {
   data() {

@@ -1,7 +1,8 @@
 // @flow
 import type { State } from '../types'
 import { _public, _private } from './core/api'
-import ScrollView from './ScrollView'
+import ScrollView from './components/ScrollView'
+import ScrollMarker from './components/ScrollMarker'
 let $scrollview
 
 function plugin (Vue: Function, options: Object = {}) {
@@ -24,6 +25,7 @@ function plugin (Vue: Function, options: Object = {}) {
   }
 
   Vue.component('ScrollView', ScrollView)
+  Vue.component('ScrollMarker', ScrollMarker)
 }
 
 // Install by default if using the script tag
@@ -37,6 +39,7 @@ const version = '__VERSION__'
 // Export all components too
 export {
   ScrollView,
+  ScrollMarker,
   $scrollview,
   version
 }
