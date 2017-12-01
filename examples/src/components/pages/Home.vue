@@ -12,7 +12,19 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      test: 'testing'
+    }
+  },
+  watch: {
+    test(val) {
+      console.log(val)
+    }
+  },
+  mounted() {
+    console.log(this)
+  }
 }
 </script>
 

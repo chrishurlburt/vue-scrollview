@@ -1,5 +1,5 @@
 <template>
-  <div :class="['visibility-marker', $vnode.key, { visible }]"></div>
+  <div :class="['visibility-marker', $vnode.key, { visible }]" :style="{ height: `${height}px` }"></div>
 </template>
 
 <script>
@@ -8,6 +8,10 @@ export default {
       visible: {
           type: Boolean,
           default: () => false
+      },
+      height: {
+          type: Number,
+          default: () => 350
       }
   }
 }
@@ -15,7 +19,6 @@ export default {
 
 <style>
 .visibility-marker {
-    height: 350px;
     width: 350px;
     margin-bottom: 1000px;
     background-color: red;

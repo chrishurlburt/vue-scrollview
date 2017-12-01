@@ -212,4 +212,43 @@ describe('ScrollView renders', () => {
       .toBe('function')
   })
 
+  it('errors on duplicate keys', () => {
+
+    const spy = {}
+    spy.console = jest.spyOn(console, 'error').mockImplementation(() => {})
+
+    const ScrollComp = Vue.extend({
+      render(h) {
+        return h('p', 'test scroll component')
+      }
+    })
+
+
+    const Ctor = Vue.extend({
+      render(h) {
+        return h(
+          'Scroll-view',
+          {
+            scopedSlots: {
+              default: (props) => [1,2].map(c => h(ScrollComp, { key: 'testKey' } ))
+            },
+            props: {
+              tag: 'div'
+            },
+            ref: 'testScrollview'
+          }
+        )
+      }
+    })
+
+    Ctor.use(ScrollView)
+    const vm = new Ctor().$mount()
+
+    expect(console.error).toHaveBeenCalled()
+
+    expect(spy.console.mock.calls[0][0])
+      .toContain('[vue-scrollview]: Keys for components in a scrollview instance must be unique across all instances of scrollview.')
+
+  })
+
 })

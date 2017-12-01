@@ -17,7 +17,7 @@ const router = new VueRouter({
     { path: '/animation', component: Animation },
     { path: '/lazy-load', component: LazyLoad },
     { path: '/scrollspy', component: ScrollSpy },
-    { path: '/test', component: Test }
+    { path: '/test', component: Test, name: 'test' }
   ]
 })
 

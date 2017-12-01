@@ -31,7 +31,7 @@ export default {
         width: '100%',
         height: '1px',
         marginTop: `${this.spacing}px`,
-        backgroundColor: this.debug ? 'red' : 'none'
+        backgroundColor: this.debug ? 'red' : 'transparent'
       }
     },
     markerNameStyle () {

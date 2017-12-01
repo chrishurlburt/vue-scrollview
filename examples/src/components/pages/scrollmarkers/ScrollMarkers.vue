@@ -3,23 +3,23 @@
     <div class="scroll-container">
 
       <Example-start
-        v-if="!currentlyShowing"
+        v-if="currentlyShowing === 'first'"
         title="Scroll Markers Example"
         description="This is an example demonstrating the use of scrollmarkers as triggers for scroll positions."
       ></Example-start>
 
-      <p v-if="currentlyShowing === 'first'" class="scroll-section">
-        As the scroll markers enter visibility, the trigger the text
+      <p v-if="currentlyShowing === 'second'" class="scroll-section">
+        As the scroll markers enter visibility, they trigger the text
         to change.
       </p>
 
-      <p v-if="currentlyShowing === 'second'" class="scroll-section">
+      <p v-if="currentlyShowing === 'third'" class="scroll-section">
         Instead of just changing text, you could attach different actions
         to each scroll marker trigger point.
       </p>
 
 
-      <div v-if="currentlyShowing === 'third'" class="scroll-section">
+      <div v-if="currentlyShowing === 'fourth'" class="scroll-section">
         <p>
           Notice how the scroll markers are red lines... that is because the
           debug prop is set to 'true'.
@@ -27,16 +27,21 @@
       </div>
 
 
-      <p v-if="currentlyShowing === 'fourth'" class="scroll-section">
+      <p v-if="currentlyShowing === 'fifth'" class="scroll-section">
         You might also notice they markers dont trigger a change
         of text until they're well into the viewport -- that's because
         of the scroll-view component's default offset of 200px (can be changed
         via props).
       </p>
 
-      <p v-if="currentlyShowing === 'fifth'" class="scroll-section">
+      <p v-if="currentlyShowing === 'sixth'" class="scroll-section">
         The end.
       </p>
+
+      <div class="debug-toggle">
+        <input type="checkbox" v-model="debug">
+        Toggle debug mode
+      </div>
 
     </div>
     <div class="markers">
@@ -47,7 +52,7 @@
             :key="m"
             :visible="visible[m]"
             :name="m"
-            :spacing="1500"
+            :spacing="700"
             :debug="debug"
             @isVisible="markerVisible"
             @isNotVisible="markerNotVisible"
@@ -59,6 +64,7 @@
 </template>
 
 <script>
+import { $scrollview } from '../../../../../src'
 import ExampleStart from '.././../ExampleStart'
 
 export default {
@@ -67,9 +73,9 @@ export default {
   },
   data() {
     return {
-      markers: ['first', 'second', 'third', 'fourth', 'fifth'],
+      markers: ['first', 'second', 'third', 'fourth', 'fifth', 'sixth'],
       debug: true,
-      currentlyShowing: '',
+      currentlyShowing: 'first',
     }
   },
   methods: {
@@ -77,7 +83,8 @@ export default {
       this.currentlyShowing = name
     },
     markerNotVisible(name) {
-      if (name === 'first') this.currentlyShowing = ''
+      const scrollDirection = $scrollview.getScrollDirection()
+      if (name === 'first' && scrollDirection === 'UP') this.currentlyShowing = name
     }
   }
 }
@@ -103,5 +110,12 @@ export default {
 .markers {
   width: 100%;
   padding-bottom: 300px;
+}
+
+.debug-toggle {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>

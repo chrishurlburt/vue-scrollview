@@ -3,7 +3,7 @@ import type { State, ScrollviewComponent } from '../../types'
 
 import throttle from 'lodash.throttle'
 
-import { getElDistanceTop, getElPosition } from './helpers'
+import { getElPosition, getDocumentHeight } from './helpers'
 import {
   createScrollListener,
   checkInViewport,
@@ -57,9 +57,6 @@ export const attachScrollListener = (state: State): State => {
  * @returns {Object} ScrollView tracking state.
  */
 export const attachRecacheListener = (state: State): State => {
-  state.recacheEl = document.createElement('span')
-  state.recacheEl.setAttribute('id', 'scrollview-recache')
-  if (document.body && state.recacheEl) document.body.appendChild(state.recacheEl)
   setInterval(() => checkIfRecache(state, () => resetScrollviews(state)), 1000)
   return state
 }
@@ -72,9 +69,7 @@ export const attachRecacheListener = (state: State): State => {
  * @returns null
  */
 const checkIfRecache = (state: State, resetFn) => {
-  if (state.recacheEl) {
-    const currentBottom = getElDistanceTop(state.recacheEl)
-    if (currentBottom !== state.bottom) resetFn()
-    state.bottom = currentBottom
-  }
+  const currentHeight = getDocumentHeight()
+  if (currentHeight !== state.documentHeight) resetFn()
+  state.documentHeight = currentHeight
 }

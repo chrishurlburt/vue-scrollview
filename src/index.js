@@ -17,7 +17,8 @@ function plugin (Vue: Function, options: Object = {}) {
     tracking: {},
     bottom: 0,
     scrollDirection: 'DOWN',
-    previousScrollLocation: 0
+    previousScrollLocation: 0,
+    documentHeight: 0
   }
 
   $scrollview = {

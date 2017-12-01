@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Navigation></Navigation>
+    <Navigation v-if="$route.name !== 'test'"></Navigation>
     <router-view></router-view>
   </div>
 </template>

@@ -1,19 +1,20 @@
 <template>
-  <section class="test">
+  <section :class="['test', { scrollingUp: scrollDir === 'UP', scrollingDown: scrollDir === 'DOWN' }]">
     <div class="controls">
       <button class="async-add-components" @click="asyncAddComponents">Async Add Components</button>
       <button class="scroll-by-key" @click="scrollToComponent">Scroll to component with key of "c"</button>
       <button class="set-offset" @click="setOffset">Set offset to 349</button>
-      <button class="duplicate-key" @click="setDuplicateKey">Add component with duplicate key of 'a'</button>
+      <button class="scroll-direction" @click="checkScrollDirection">Check scroll direction</button>
+      <button class="change-height" @click="changeHeight">Change height</button>
     </div>
     <Scroll-view :offset="offset">
         <template slot-scope="inView">
-            <Visibility-marker v-if="duplicateKey" key="a" />
+            <visibility-marker :height="heightChange" key="h" :visible="inView.h" />
 
             <Visibility-marker key="a" :visible="inView.a" />
             <Visibility-marker key="b" :visible="inView.b" />
             <Visibility-marker key="c" :visible="inView.c" />
-
+            
             <Visibility-marker v-for="k in componentsToAddKeys" :key="k" :visible="inView[k]" />
         </template>
     </Scroll-view>
@@ -26,7 +27,12 @@ import VisibilityMarker from './VisibilityMarker'
 
 export default {
   data() {
-    return { componentsToAddKeys: [], offset: 200, duplicateKey: false, }
+    return {
+      componentsToAddKeys: [],
+      offset: 200,
+      scrollDir: '',
+      heightChange: 10
+    }
   },
   components: {
     VisibilityMarker
@@ -44,11 +50,13 @@ export default {
     setOffset() {
       this.offset = 349
     },
-    setDuplicateKey() {
-      this.duplicateKey = true
-      $scrollview.refresh()
+    checkScrollDirection() {
+      this.scrollDir = $scrollview.getScrollDirection()
+    },
+    changeHeight() {
+      this.heightChange = 1000
     }
-  },
+  }
 }
 </script>
 

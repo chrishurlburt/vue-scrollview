@@ -9,7 +9,7 @@ export type State = {
     tracking: {
         [number | string]: ComponentVisibility
     },
-    bottom: number,
+    documentHeight: number,
     previousScrollLocation: number,
     scrollDirection: ScrollDirection,
     scrollListener?: () => void,

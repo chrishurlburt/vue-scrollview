@@ -74,3 +74,21 @@ export const getElPosition = (el: any): ComponentPosition => { // eslint-disable
  * @returns {(Boolean)}
  */
 export const hasDuplicates = (array: Array<mixed>): boolean => (new Set(array)).size !== array.length
+
+/**
+ * Gets the height of the document.
+ *
+ * @returns {(Number)}
+ */
+export const getDocumentHeight = (): number => {
+  const body = document.body
+  const html = document.documentElement
+
+  if (body && html) {
+    return Math.max(
+      body.scrollHeight, body.offsetHeight,
+      html.clientHeight, html.scrollHeight, html.offsetHeight
+    )
+  }
+  return 0
+}
