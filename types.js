@@ -24,7 +24,6 @@ export type ScrollviewPrivateAPI = {|
 
 export type ScrollviewPublicAPI = {|
     scrollToComponent(ComponentKey, number): void,
-    forceRefresh(): void,
     refresh(): void,
     getComponentLocation(ComponentKey): ComponentPosition | void,
     getScrollDirection(): ScrollDirection

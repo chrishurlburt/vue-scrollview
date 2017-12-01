@@ -84,18 +84,6 @@ export const _public = (state: State): ScrollviewPublicAPI => ({
   },
 
   /**
-   * DEPRECATED: see refresh()
-   *
-   * @returns null
-   */
-  forceRefresh: () => {
-    console.warn(
-      '[vue-scrollview]: $scrollsview.forceRefresh() is deprecated and will be removed in the next major version. Please use $scrollview.refresh() instead.'
-    )
-    resetScrollviews(state)
-  },
-
-  /**
    * Force refreshes the locations of components being tracked by scrollviews.
    *
    * @returns null
