@@ -1,5 +1,4 @@
 // @flow
-import type { State } from '../types'
 import { _public, _private } from './core/api'
 import ScrollView from './components/ScrollView'
 import ScrollMarker from './components/ScrollMarker'

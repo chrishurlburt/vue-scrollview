@@ -1,5 +1,4 @@
 // @flow
-import type { State, ScrollviewPrivateAPI, ScrollviewPublicAPI } from '../../types'
 import flowright from 'lodash.flowright'
 
 import { keysAreUnique, fetchComponentByKey } from './helpers'

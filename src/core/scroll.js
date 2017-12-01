@@ -1,5 +1,4 @@
 // @flow
-import type { State } from '../../types'
 
 /**
  * Creates the scroll listener function.

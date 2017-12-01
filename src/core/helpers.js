@@ -1,13 +1,4 @@
 // @flow
-
-import type {
-  State,
-  ComponentKey,
-  LocationsList,
-  ComponentLocation,
-  ComponentPosition
-} from '../../types'
-
 /**
  * Get an element's distance from the top of the viewport.
  *

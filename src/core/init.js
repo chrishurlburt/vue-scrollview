@@ -1,6 +1,4 @@
 // @flow
-import type { State, ScrollviewComponent } from '../../types'
-
 import throttle from 'lodash.throttle'
 
 import { getElPosition, getDocumentHeight } from './helpers'

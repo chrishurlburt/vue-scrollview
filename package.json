@@ -14,8 +14,8 @@
   ],
   "scripts": {
     "clean": "rimraf dist",
-    "build": "flow && node build/build.js",
-    "build:example": "cd ./examples/build && node build.js",    
+    "build": "flow check && node build/build.js",
+    "build:example": "cd ./examples/build && node build.js",
     "example": "cd ./examples && webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "lint": "eslint --ext js --ext jsx --ext vue src test/**/*.spec.js test/*.js build",
     "lint:staged": "lint-staged",
@@ -92,6 +92,7 @@
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.26.1",
     "eslint": "^3.16.1",
+    "eslint-plugin-flowtype": "^2.39.1",    
     "eslint-config-vue": "^2.0.2",
     "eslint-plugin-vue": "^2.0.1",
     "eventsource-polyfill": "^0.9.6",
