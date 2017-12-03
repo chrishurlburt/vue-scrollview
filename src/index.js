@@ -14,14 +14,26 @@ function plugin (Vue: Function, options: Object = {}) {
     scrollviews: {},
     locations: [],
     tracking: {},
-    bottom: 0,
     scrollDirection: 'DOWN',
     previousScrollLocation: 0,
-    documentHeight: 0
+    documentHeight: 0,
+    lastComponent: {},
+    onLastEntered: () => {}
   }
 
   $scrollview = {
     state: initialState,
+    set onLastEntered (fn) {
+      if (typeof fn !== 'function') {
+        console.error('[vue-scrollview]: onLastEntered expects a function.')
+      } else {
+        initialState.onLastEntered = fn
+        this._onLastEntered = fn
+      }
+    },
+    get onLastEntered () {
+      return this._onLastEntered
+    },
     ..._private(initialState),
     ..._public(initialState)
   }

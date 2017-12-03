@@ -13,10 +13,11 @@ import {
 /**
  * Initializes a ScrollView $vm into tracking.
  *
+ * @param {Object} state - ScrollView tracking state.
  * @param {Object} ScrollView - The ScrollView $vm
  * @returns {Object} Component locations and ScrollViews being tracked.
  */
-export const initializeScrollview = ({ _uid, $children }: ScrollviewComponent) => {
+export const initializeScrollview = (state: State, { _uid, $children }: ScrollviewComponent) => {
   return $children.reduce((data, { $el, $vnode: { key: child }}) => {
     const position = getElPosition($el)
     data.locations.push({
@@ -25,8 +26,24 @@ export const initializeScrollview = ({ _uid, $children }: ScrollviewComponent) =
       component: child
     })
     data.tracking[child] = false
+    setLastComponent(state, { key: child, position })
     return data
   }, { locations: [], tracking: {}})
+}
+
+/**
+ * Stores data for the last component on the page.
+ *
+ * @param {Object} State - ScrollView tracking state.
+ * @param {Object} ComponentData - An object containing the key and position of a component.
+ * @returns {Object} null
+ */
+export const setLastComponent = (state: State, { key, position }: { key: ComponentKey, position: ComponentPosition }) => {
+  if (!state.lastComponent.key || !state.lastComponent.position) {
+    state.lastComponent = { key, position }
+  } else if (state.lastComponent.position.top < position.top) {
+    state.lastComponent = { key, position }
+  }
 }
 
 /**

@@ -26,7 +26,12 @@ export const checkInViewport = (state: State) => {
     const { offset } = state.scrollviews[scrollview]
     const withinTopBounds = (position.bottom - offset) - window.pageYOffset > 0
     const withinBottomBounds = (position.top + offset) - window.pageYOffset <= window.innerHeight
-    state.tracking[scrollview][component] = (withinTopBounds && withinBottomBounds)
+    const visible = (withinTopBounds && withinBottomBounds)
+    state.tracking[scrollview][component] = visible
+    if (visible && component === state.lastComponent.key && state.lastComponent.key) {
+      state.onLastEntered(component)
+      state.onLastEntered = () => {}
+    }
   })
 }
 

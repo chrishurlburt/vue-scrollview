@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { $scrollview } from '../../../../../src'
+
 import ExampleStart from '.././../ExampleStart'
 import LazyImage from './LazyImage'
 
@@ -30,7 +32,7 @@ export default {
   components: {
     LazyImage,
     ExampleStart
-  }
+  },
 }
 </script>
 

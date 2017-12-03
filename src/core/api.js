@@ -20,7 +20,7 @@ export const _private = (state: State): ScrollviewPrivateAPI => ({
   _track: (scrollview) => {
     if (keysAreUnique(state, scrollview.$children)) {
       state.scrollviews[scrollview._uid] = scrollview
-      const { tracking, locations } = initializeScrollview(scrollview)
+      const { tracking, locations } = initializeScrollview(state, scrollview)
       state.locations = state.locations.concat(locations)
       state.tracking[scrollview._uid] = tracking
       checkInViewport(state)

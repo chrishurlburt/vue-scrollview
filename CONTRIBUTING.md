@@ -29,7 +29,7 @@ We accept contributions via Pull Requests on [Github](https://github.com/chrishu
 Launch visual tests and watch the components at the same time
 
 ``` bash
-$ npm run dev
+$ npm run example
 ```
 
 

@@ -1,5 +1,5 @@
 // @flow
-declare type State = { // eslint-disable-line no-undef
+declare type State = {| // eslint-disable-line no-undef
   callbacks: Array<?(State) => void>,
   throttle: number,
   scrollviews: {
@@ -13,5 +13,7 @@ declare type State = { // eslint-disable-line no-undef
   previousScrollLocation: number,
   scrollDirection: ScrollDirection,
   scrollListener?: () => void,
-  recacheEl?: HTMLSpanElement // eslint-disable-line
-}
+  recacheEl?: HTMLSpanElement, // eslint-disable-line
+  lastComponent: { key?: ComponentKey, position?: ComponentPosition },
+  onLastEntered: Function
+|}
