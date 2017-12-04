@@ -1,12 +1,11 @@
 <template>
   <section class="home">
       <h1 class="title">ScrollView Examples</h1>
-      <!-- <div class="examples">
-        <a :href="`${path}#/animation`">Animation</a>
-        <a :href="`${path}#/lazy-load`">Lazy Loading</a>
-        <a :href="`${path}#/scrollspy`">Scrollspy Navigation</a>
-        <a :href="`${path}#/scroll-markers`">Scroll Markers</a>
-      </div> -->
+      <p class="description">
+        This is a collection of small examples demonstrating different applications
+        for ScrollView. Feel free to submit a PR for a new example
+        <a href="https://github.com/chrishurlburt/vue-scrollview" target="blank">here</a>.
+      </p>
   </section>
 </template>
 
@@ -30,6 +29,11 @@ export default {
 
 .title {
   margin-bottom: 35px;
+}
+
+.description {
+  max-width: 600px;
+  text-align: center;
 }
 
 .examples {

@@ -15,6 +15,7 @@
         <ScrollImage v-for="i in items" :source="i.url" :key="i.id" />
       </template>
     </scroll-view>
+
   </section>
 </template>
 
@@ -52,10 +53,7 @@ export default {
     },
   },
   mounted () {
-    $scrollview.onLastEntered = () => {
-      console.log('called')
-      this.page++ // last component entered, increment the page
-    }
+    $scrollview.onLastEntered = () => this.page++ // last component entered, increment the page
   }
 }
 </script>

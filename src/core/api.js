@@ -5,7 +5,8 @@ import { keysAreUnique, fetchComponentByKey } from './helpers'
 import {
   initializeScrollview,
   attachScrollListener,
-  attachRecacheListener
+  attachRecacheListener,
+  setLastComponent
 } from './init'
 import { checkInViewport, resetScrollviews } from './scroll'
 
@@ -40,6 +41,10 @@ export const _private = (state: State): ScrollviewPrivateAPI => ({
     delete state.tracking[_uid]
     delete state.scrollviews[_uid]
     state.locations = state.locations.filter(location => location.scrollview !== _uid)
+    if (state.lastComponent.scrollview === _uid) {
+      state.lastComponent = {}
+      state.locations.forEach(location => setLastComponent(state, location))
+    }
   },
 
   /**

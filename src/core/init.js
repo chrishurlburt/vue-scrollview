@@ -26,7 +26,7 @@ export const initializeScrollview = (state: State, { _uid, $children }: Scrollvi
       component: child
     })
     data.tracking[child] = false
-    setLastComponent(state, { key: child, position })
+    setLastComponent(state, { scrollview: _uid, component: child, position })
     return data
   }, { locations: [], tracking: {}})
 }
@@ -38,12 +38,12 @@ export const initializeScrollview = (state: State, { _uid, $children }: Scrollvi
  * @param {Object} ComponentData - An object containing the key and position of a component.
  * @returns {Object} null
  */
-export const setLastComponent = (state: State, { key, position }: { key: ComponentKey, position: ComponentPosition }) => {
+export const setLastComponent = (state: State, { component, position, scrollview }: ComponentLocation) => {
   if (
     (!state.lastComponent.key || !state.lastComponent.position) ||
     (state.lastComponent.position.top < position.top)
   ) {
-    state.lastComponent = { key, position }
+    state.lastComponent = { key: component, position, scrollview }
     state.firedOnLastEntered = false
   }
 }

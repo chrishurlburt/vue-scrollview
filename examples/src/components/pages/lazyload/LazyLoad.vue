@@ -32,7 +32,7 @@ export default {
   components: {
     LazyImage,
     ExampleStart
-  },
+  }
 }
 </script>
 
