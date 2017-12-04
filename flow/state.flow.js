@@ -15,5 +15,6 @@ declare type State = {| // eslint-disable-line no-undef
   scrollListener?: () => void,
   recacheEl?: HTMLSpanElement, // eslint-disable-line
   lastComponent: { key?: ComponentKey, position?: ComponentPosition },
-  onLastEntered: Function
+  onLastEntered: Function,
+  firedOnLastEntered: boolean
 |}

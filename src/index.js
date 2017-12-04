@@ -18,6 +18,7 @@ function plugin (Vue: Function, options: Object = {}) {
     previousScrollLocation: 0,
     documentHeight: 0,
     lastComponent: {},
+    firedOnLastEntered: false,
     onLastEntered: () => {}
   }
 

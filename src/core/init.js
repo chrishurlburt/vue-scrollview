@@ -39,10 +39,12 @@ export const initializeScrollview = (state: State, { _uid, $children }: Scrollvi
  * @returns {Object} null
  */
 export const setLastComponent = (state: State, { key, position }: { key: ComponentKey, position: ComponentPosition }) => {
-  if (!state.lastComponent.key || !state.lastComponent.position) {
+  if (
+    (!state.lastComponent.key || !state.lastComponent.position) ||
+    (state.lastComponent.position.top < position.top)
+  ) {
     state.lastComponent = { key, position }
-  } else if (state.lastComponent.position.top < position.top) {
-    state.lastComponent = { key, position }
+    state.firedOnLastEntered = false
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <section :class="['test', { scrollingUp: scrollDir === 'UP', scrollingDown: scrollDir === 'DOWN' }]">
+  <section :class="['test', { scrollingUp: scrollDir === 'UP', scrollingDown: scrollDir === 'DOWN', lastEntered }]">
     <div class="controls">
       <button class="async-add-components" @click="asyncAddComponents">Async Add Components</button>
       <button class="scroll-by-key" @click="scrollToComponent">Scroll to component with key of "c"</button>
@@ -31,7 +31,8 @@ export default {
       componentsToAddKeys: [],
       offset: 200,
       scrollDir: '',
-      heightChange: 10
+      heightChange: 10,
+      lastEntered: false,
     }
   },
   components: {
@@ -55,7 +56,13 @@ export default {
     },
     changeHeight() {
       this.heightChange = 1000
+    },
+    lastComponentEnterd() {
+      this.lastEntered = true
     }
+  },
+  mounted() {
+    $scrollview.onLastEntered = this.lastComponentEnterd
   }
 }
 </script>

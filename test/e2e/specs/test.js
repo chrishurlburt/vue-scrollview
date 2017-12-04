@@ -88,11 +88,21 @@ module.exports = {
   'automatic element location recaching on scroll height change': function (browser) {
     browser
       .execute("window.scrollTo(0,0)")
-      .click('.change-height')
+      .execute("window.scrollTo(0, 2120)")
       .pause(200)
-      .execute("window.scrollTo(0, 3010)")
-      .pause(500)
+      .assert.cssClassPresent('.visibility-marker.b', 'visible')   
+      .click('.change-height')
+      .execute("window.scrollTo(0, 2120)")
+      .pause(1000)
       .assert.cssClassNotPresent('.visibility-marker.b', 'visible')      
+  },
+  'lastComponentEntered callback fires on last component entering': function  (browser) {
+    browser
+      .execute("window.scrollTo(0,0)")
+      .pause(200)
+      .execute("window.scrollTo(0, 20000)")
+      .pause(200)
+      .assert.cssClassPresent('.test', 'lastEntered')
       .end()
   }
 }
