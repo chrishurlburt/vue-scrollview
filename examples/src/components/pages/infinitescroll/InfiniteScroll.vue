@@ -9,7 +9,7 @@
     <scroll-view>
       <template slot-scope="visible">
         <!--
-          ScrollImage doesn't need a 'visible' prop becuase it doesn't care about it's visibility.
+          ScrollImage doesn't need a 'visible' prop because it doesn't care about it's visibility.
           For the sake of this demo, we only care when the last component enters the viewport.
         -->
         <ScrollImage v-for="i in items" :source="i.url" :key="i.id" />
@@ -40,7 +40,7 @@ export default {
     page: {
       immediate: true,
       handler: function () {
-        // get some more items everytime the page changes
+        // get some more items every time the page changes
         this.fetchMore()
       }
     }

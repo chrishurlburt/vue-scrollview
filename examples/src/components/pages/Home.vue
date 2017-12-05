@@ -6,6 +6,9 @@
         for ScrollView. Feel free to submit a PR for a new example
         <a href="https://github.com/chrishurlburt/vue-scrollview" target="blank">here</a>.
       </p>
+      <p class="description">
+        <a href="https://chrishurlburt.gitbooks.io/vue-scrollview/" target="blank">Read the docs here</a>
+      </p>
   </section>
 </template>
 
