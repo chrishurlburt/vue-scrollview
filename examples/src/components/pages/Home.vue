@@ -1,8 +1,8 @@
 <template>
   <section class="home">
-      <h1 class="title">ScrollView Examples</h1>
+      <img class="logo" src="static/logo.jpg" alt="ScrollView Logo">
       <p class="description">
-        This is a collection of small examples demonstrating different applications
+        This is a collection of examples demonstrating different applications
         for ScrollView. Feel free to submit a PR for a new example
         <a href="https://github.com/chrishurlburt/vue-scrollview" target="blank">here</a>.
       </p>
@@ -32,6 +32,10 @@ export default {
 
 .home a {
   color: #798890;
+}
+
+.logo {
+  max-width: 600px;
 }
 
 .title {
