@@ -1,7 +1,7 @@
 export default {
 
   render (h) {
-    return h(`h${this.weight}`, { style: { textAlign: 'center' }}, this.content)
+    return h(`h${this.weight}`, { class: ['heading'] }, this.content)
   },
 
   props: {

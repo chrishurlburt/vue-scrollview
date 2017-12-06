@@ -28,7 +28,6 @@
                 :visible="visibleSection[section.key]"
                 :spacing="0"
                 :name="section.key"
-                :debug="true"
                 @isVisible="sectionVisible"
                 @isNotVisible="key => sectionNotVisible(key, i)"
               ></scroll-marker>
@@ -137,6 +136,26 @@ export default {
 
 .page-section {
   padding: 60px 0;
+}
+
+.page-section .heading {
+  text-align: center;
+}
+
+.page-section h1 {
+  font-size: 48px;
+}
+
+.page-section h2 {
+  font-size: 36px;
+}
+
+.page-section h3 {
+  font-size: 24px;
+}
+
+.page-section h4 {
+  font-size: 18px;
 }
 
 .scrollspy-menu {
