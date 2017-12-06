@@ -9,12 +9,12 @@
     <div class="images">
       <scroll-view>
         <template slot-scope="visibility">
-          <LazyImage from="/static/vw_blur.jpg" to="/static/vw.jpg" :visible="visibility.vw" key="vw"></LazyImage>
-          <LazyImage from="/static/temple_blur.jpg" to="/static/temple.jpg" :visible="visibility.temple" key="temple"></LazyImage>
-          <LazyImage from="/static/squirrel_blur.jpg" to="/static/squirrel.jpg" :visible="visibility.squirrel" key="squirrel"></LazyImage>
-          <LazyImage from="/static/city_blur.jpg" to="/static/city.jpg" :visible="visibility.city" key="city"></LazyImage>
-          <LazyImage from="/static/book_blur.jpg" to="/static/book.jpg" :visible="visibility.book" key="book"></LazyImage>
-          <LazyImage from="/static/ape_blur.jpg" to="/static/ape.jpg" :visible="visibility.ape" key="ape"></LazyImage>
+          <LazyImage from="static/vw_blur.jpg" to="static/vw.jpg" :visible="visibility.vw" key="vw"></LazyImage>
+          <LazyImage from="static/temple_blur.jpg" to="static/temple.jpg" :visible="visibility.temple" key="temple"></LazyImage>
+          <LazyImage from="static/squirrel_blur.jpg" to="static/squirrel.jpg" :visible="visibility.squirrel" key="squirrel"></LazyImage>
+          <LazyImage from="static/city_blur.jpg" to="static/city.jpg" :visible="visibility.city" key="city"></LazyImage>
+          <LazyImage from="static/book_blur.jpg" to="static/book.jpg" :visible="visibility.book" key="book"></LazyImage>
+          <LazyImage from="static/ape_blur.jpg" to="static/ape.jpg" :visible="visibility.ape" key="ape"></LazyImage>
         </template>
       </scroll-view>
     </div>
