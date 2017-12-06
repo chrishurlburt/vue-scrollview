@@ -7,7 +7,7 @@
         <a href="https://github.com/chrishurlburt/vue-scrollview" target="blank">here</a>.
       </p>
       <p class="description">
-        <a href="https://chrishurlburt.gitbooks.io/vue-scrollview/" target="blank">Read the docs here</a>
+        <a href="https://chrishurlburt.gitbooks.io/vue-scrollview/" target="blank">Read the docs</a>
       </p>
   </section>
 </template>
@@ -28,6 +28,10 @@ export default {
   align-items: center;
   flex-direction: column;
   justify-content: center;
+}
+
+.home a {
+  color: #798890;
 }
 
 .title {
