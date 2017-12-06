@@ -2,11 +2,11 @@
   <nav class="main-navigation">
     <p class="docs"><a :href="`${path}#/`">ScrollView Examples</a></p>
     <ul class="nav-list">
-        <li class="nav-item"><a :href="`${path}#/lazy-load`">Lazy Loading</a></li>
-        <li class="nav-item"><a :href="`${path}#/infinite-scroll`">Infinite Scroll</a></li>
-        <li class="nav-item"><a :href="`${path}#/scrollspy`">Scrollspy Navigation</a></li>
-        <li class="nav-item"><a :href="`${path}#/animation`">Animation</a></li>
-        <li class="nav-item"><a :href="`${path}#/scroll-markers`">Scroll Markers</a></li>
+        <li class="nav-item"><a :href="`${path}/#/lazy-load`">Lazy Loading</a></li>
+        <li class="nav-item"><a :href="`${path}/#/infinite-scroll`">Infinite Scroll</a></li>
+        <li class="nav-item"><a :href="`${path}/#/scrollspy`">Scrollspy Navigation</a></li>
+        <li class="nav-item"><a :href="`${path}/#/animation`">Animation</a></li>
+        <li class="nav-item"><a :href="`${path}/#/scroll-markers`">Scroll Markers</a></li>
     </ul>
   </nav>
 </template>

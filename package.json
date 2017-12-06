@@ -120,7 +120,6 @@
     "rimraf": "^2.6.0",
     "rollup": "^0.41.4",
     "rollup-plugin-babel": "^3.0.2",
-    "rollup-plugin-buble": "^0.15.0",
     "rollup-plugin-commonjs": "^7.0.0",
     "rollup-plugin-flow": "^1.1.1",
     "rollup-plugin-jsx": "^1.0.3",
