@@ -4,4 +4,6 @@
 
 > ScrollView is a Vue.js plugin that includes a set of components and methods for facilitating UI interactions tied to scrolling in your app. For example, ScrollView may be used to create infinitely scrolling content, trigger lazy load resources, animate components based on visibility with a third-party library like GreenSock, or easily create UI elements such as scrollspy navigations.
 
+![ScrollView Logo](https://github.com/chrishurlburt/vue-scrollview/blob/master/logo.jpg)
+
 For more information & examples, [Read the documentation located here.](https://chrishurlburt.gitbooks.io/vue-scrollview/content/)
