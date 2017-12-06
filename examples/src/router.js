@@ -20,7 +20,11 @@ const router = new VueRouter({
     { path: '/scrollspy', component: ScrollSpy },
     { path: '/infinite-scroll', component: InfiniteScroll },
     { path: '/test', component: Test, name: 'test' }
-  ]
+  ],
+  scrollBehavior () {
+    // return desired position
+    return { x: 0, y: 0 }
+  }
 })
 
 export default router

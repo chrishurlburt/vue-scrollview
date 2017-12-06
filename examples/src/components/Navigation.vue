@@ -15,7 +15,9 @@
 export default {
   computed: {
       path() {
-          return __webpack_public_path__
+          return process.env.NODE_ENV === 'production'
+            ? __webpack_public_path__
+            : ''
       }
   }
 }
