@@ -2,7 +2,7 @@ const mkdirp = require('mkdirp')
 const rollup = require('rollup').rollup
 const vue = require('rollup-plugin-vue')
 const jsx = require('rollup-plugin-jsx')
-const buble = require('rollup-plugin-buble')
+const babel = require('rollup-plugin-babel')
 const replace = require('rollup-plugin-replace')
 const cjs = require('rollup-plugin-commonjs')
 const node = require('rollup-plugin-node-resolve')
@@ -40,8 +40,8 @@ function rollupBundle ({ env }) {
       replace(Object.assign({
         __VERSION__: version
       }, env)),
-      buble({
-        objectAssign: 'Object.assign'
+      babel({
+        exclude: 'node_modules/**'
       })
     ]
   })

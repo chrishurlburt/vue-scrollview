@@ -64,7 +64,8 @@ export const getElPosition = (el: any): ComponentPosition => { // eslint-disable
  * @param {Array} array - The array to check.
  * @returns {(Boolean)}
  */
-export const hasDuplicates = (array: Array<mixed>): boolean => (new Set(array)).size !== array.length
+export const hasDuplicates = (array: Array<mixed>): boolean => array
+  .some((val, i) => array.indexOf(val) !== i)
 
 /**
  * Gets the height of the document.

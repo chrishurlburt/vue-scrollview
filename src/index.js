@@ -1,4 +1,5 @@
 // @flow
+import 'core-js/fn/array/find'
 import { _public, _private } from './core/api'
 import ScrollView from './components/ScrollView'
 import ScrollMarker from './components/ScrollMarker'
