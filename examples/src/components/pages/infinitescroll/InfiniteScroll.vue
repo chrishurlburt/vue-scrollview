@@ -15,6 +15,7 @@
         <ScrollImage v-for="i in items" :source="i.url" :key="i.id" />
       </template>
     </scroll-view>
+    <h3 v-if="loading" class="loading">Loading...</h3>
 
   </section>
 </template>
@@ -33,7 +34,8 @@ export default {
   data() {
     return {
       page: 1,
-      items: []
+      items: [],
+      loading: false,
     }
   },
   watch: {
@@ -47,9 +49,16 @@ export default {
   },
   methods: {
     fetchMore() {
+      this.loading = true
       axios.get(`https://jsonplaceholder.typicode.com/albums/${this.page}/photos`)
-        .then(({ data }) => this.items = this.items.concat(data.slice(1, 6)))
-        .catch(console.log)
+        .then(({ data }) => {
+          this.loading = false
+          this.items = this.items.concat(data.slice(1, 6))
+        })
+        .catch(e => {
+          this.loading = false
+          console.log(e)
+        })
     },
   },
   mounted () {
@@ -57,3 +66,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.loading {
+  text-align: center;
+}
+</style>
+

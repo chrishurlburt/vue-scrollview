@@ -13,9 +13,9 @@
 
       <Example-start
           title="Scrollspy Navigation Example"
-          description="This is an example demonstrating using scroll-view to build an advanced page navigation system.
+          description="This is an example demonstrating using ScrollView to build an advanced page navigation system.
           As you scroll the page and sections come into view, the menu on the left with dynamically mark your location.
-          You can also easily scroll to sections by clicking items in the navigation."
+          You can also scroll to sections by clicking items in the navigation."
       ></Example-start>
 
       <template v-for="(section, i) in pageSections">

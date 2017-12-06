@@ -2,7 +2,7 @@
   <section class="animation">
       <Example-start
         title="Animation Example"
-        description="This example demonstrates integrating an animation library, nameley GreenSock,
+        description="This example demonstrates integrating GreenSock with ScrollView
         to animate content at different scroll locations."
       ></Example-start>
 

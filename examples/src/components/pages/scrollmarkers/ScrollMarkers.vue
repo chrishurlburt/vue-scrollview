@@ -28,9 +28,9 @@
 
 
       <p v-if="currentlyShowing === 'fifth'" class="scroll-section">
-        You might also notice they markers dont trigger a change
+        You might also notice the markers dont trigger a change
         of text until they're well into the viewport -- that's because
-        of the scroll-view component's default offset of 200px (can be changed
+        of the scroll-view's default offset of 200px (can be changed
         via props).
       </p>
 
