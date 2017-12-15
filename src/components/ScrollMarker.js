@@ -52,7 +52,7 @@ export default {
     },
     visible: {
       type: Boolean,
-      defualt: () => false
+      default: () => false
     },
     spacing: {
       type: Number,
