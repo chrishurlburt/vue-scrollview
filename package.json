@@ -1,7 +1,7 @@
 {
   "name": "vue-scrollview",
-  "version": "3.0.0",
-  "description": "A Vue.js component for detecting when components are visible in the viewport via the Vue.js scoped slots api.",
+  "version": "3.0.1",
+  "description": "A Vue.js component library for creating complex scroll interactions.",
   "author": "Chris Hurlburt <hurlburt.chris@gmail.com>",
   "main": "dist/vue-scrollview.common.js",
   "module": "dist/vue-scrollview.esm.js",
