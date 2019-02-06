@@ -13,6 +13,7 @@
 </template>
 
 <script>
+// import { $scrollview } from 'vue-scrollview'
 import { $scrollview } from '../../../../src'
 
 export default {
